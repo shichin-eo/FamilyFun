@@ -1,0 +1,19 @@
+.noticePanel {
+  height: $noticePanelHeight;
+  width: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  background: $noticePanelBackground;
+  font-family: $mainFont;
+  position: relative;
+  padding: 0 2vw;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.noticeSeparator {
+  height: 80%;
+  width: 0.1vw;
+  background-color: $noticePanelSeparatorColor;
+}

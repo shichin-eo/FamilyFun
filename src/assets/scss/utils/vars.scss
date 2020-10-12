@@ -1,0 +1,113 @@
+/*
+* * Vars:
+*/
+
+//! Common Settings
+$mainFont: "MontserratMedium", sans-serif;
+$mainBackground: #f5f5f5;
+//Menu settings
+$menuColor: #f66f6c;
+$menuHeight: 19vh;
+$menuWidth: 100%;
+$menuFontColor: #ffffff;
+$menuFontSize: 3vh;
+
+//Menu settings end
+
+//! InfoGraph settings
+$backInfoGraphColor: #f66f6c;
+$infoGraphColorLight: #a7d1e7;
+$infoGraphColorDark: #87c0dd;
+$infoGraphColorWhite: #ffffff;
+$infoGraphDateFontSize: 3vw;
+// InfoGraph settings end
+
+//! CardPanel settings
+// * Картотека Family
+$cardColorFamilyDark: rgb(237, 144, 51);
+$cardColorFamily1: rgb(238, 156, 48);
+$cardColorFamily2: rgb(242, 165, 75);
+$cardColorFamily3: rgb(240, 183, 93);
+$cardColorFamily4: rgb(230, 208, 122);
+$cardColorFamilyLight: rgb(247, 233, 159);
+
+// * Картотека FUN
+$cardColorFunDark: rgb(119, 103, 201);
+$cardColorFun1: rgb(150, 122, 232);
+$cardColorFun2: rgb(169, 120, 235);
+$cardColorFun3: rgb(172, 101, 223);
+$cardColorFun4: rgb(207, 117, 231);
+$cardColorFunLight: rgb(217, 154, 224);
+
+//! CardforAddition
+// * Нейтральная карточка
+$cardColorNeutral: #dcd7dd;
+$crosshairColor: #ffffff;
+$funBtnColor: #7967c8;
+$familyBtnColor: #f7eb98;
+
+//! -------------NoticePanel-----------------
+$noticePanelHeight: 35vh;
+$noticePanelBackground: #ffffff;
+$noticePanelSeparatorColor: #e6e6e6;
+//! <<<<< Notification >>>>>
+// * PUSH NOTICE * //
+$pushNotificationBackground: #f66f6c;
+$pushNotificationTextBackground: #f59a99;
+
+// * EVENT NOTICE * //
+$eventNotificationBackground: #7767c9;
+$eventNotificationTextBackground: #ad98f4;
+
+// * SENDING UNIT *//
+$sendingUnitMain: #fa9293;
+$sendingUnitSelected: #f66f6c;
+$sendingUnitSubmit: #f66f6c;
+
+// * NOTIFICATION * //
+$notificationFontColor: #ffffff;
+$notificationScrollColor: red;
+$notificationBodyFontSize: 1.5vh;
+
+// CardPanel settings end
+
+//?? Main color
+$default-color: #ffffff;
+$primary-color: #444ce0;
+$success-color: #26de81;
+$danger-color: #fc5c65;
+$warning-color: #fed330;
+$light-color: #999999;
+$purple-color: #8854d0;
+
+//?? Neutral Color
+$neutral-primary: #303133;
+$neutral-regular: #606266;
+$neutral-secondary: #909399;
+$neutral-placeholder: #c0c4cc;
+
+//?? Border Color
+$border-base: #dcdfe6;
+$border-light: #e4e7ed;
+$border-lighter: #ebeef5;
+$border-lightex: #f2f6fc;
+
+//!! Size
+$mainFontColor: #101010;
+$mainFontSize: 18px;
+$mainFontWeight: 400;
+$mainLineHeight: 1.4;
+//??Смартфоны (Портрет и ландшафтный)
+$phoneMinWidth: 320px;
+$phoneMaxWidth: 480px;
+//??Смартфоны (ландшафтный)
+$smPhoneWidth: 321px;
+//??Планшеты (Портрет и Ландшафтный)
+$tableMinWidth: 768px;
+$tableMaxWidth: 1024px;
+//??Настольные компьютеры и ноутбуки
+$desktopWidth: 1224px;
+//??Большие экраны
+$desktopLargeWidth: 1824px;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+$assetsPath: "../../img/" !default;

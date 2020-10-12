@@ -1,0 +1,125 @@
+// * Основной контейнер добавления карточки
+.cardForAddition-container {
+  width: 18vw;
+  height: 26vh;
+  border: solid 2px black;
+  border-radius: 18px;
+  position: relative;
+  padding-bottom: 2vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+// * Crosshair animated
+.cardForAddition-btnAdd {
+  width: 6vh;
+  height: 6vh;
+  position: absolute;
+  bottom: 22.5vh;
+  background-color: #dcd7dd;
+  border-radius: 15px;
+}
+// * Crosshair elements
+%cardForAddition-crosshair {
+  position: absolute;
+  background-color: $crosshairColor;
+  width: 60%;
+  height: 0.6vh;
+  border-radius: 5px;
+}
+
+.cardForAddition-horizElem {
+  @extend %cardForAddition-crosshair;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cardForAddition-vertElem {
+  @extend %cardForAddition-crosshair;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateZ(90deg);
+}
+// * Нейтральная карточка
+#neutralCard {
+  box-shadow: 0 -3px 0.3vh rgba(0, 0, 0, 0.5);
+  background-color: $cardColorNeutral;
+  width: 88%;
+}
+
+// * Buttons of control
+.cardForAddition-buttonsOfControl {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cardForAddition-familyBtnAdd-container,
+.cardForAddition-funBtnAdd-container {
+  position: relative;
+}
+.cardForAddition-familyBtnAdd-container {
+  margin-left: -15%;
+}
+.cardForAddition-funBtnAdd-container {
+  margin-right: -15%;
+}
+
+%cardForAddition-BtnAdd {
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cardForAddition-familyBtnAdd {
+  @extend %cardForAddition-BtnAdd;
+  background-color: $familyBtnColor;
+}
+
+.cardForAddition-funBtnAdd {
+  @extend %cardForAddition-BtnAdd;
+  background-color: $funBtnColor;
+}
+
+.familySign1,
+.familySign2,
+.funSign1,
+.funSign2 {
+  position: absolute;
+  background-color: $crosshairColor;
+  width: 50%;
+  height: 0.5vh;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.familySign1 {
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%) rotate(-45deg);
+}
+
+.familySign2 {
+  left: 50%;
+  bottom: 30%;
+  //transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%) rotate(45deg);
+}
+
+.funSign1 {
+  right: 50%;
+  top: 30%;
+  transform: translate(50%) rotate(45deg);
+}
+
+.funSign2 {
+  right: 50%;
+  bottom: 30%;
+  transform: translate(50%) rotate(-45deg);
+}

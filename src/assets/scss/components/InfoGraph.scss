@@ -1,0 +1,94 @@
+.infograph-container {
+  background-color: $backInfoGraphColor;
+  border-radius: 0 0 0 35%;
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+}
+
+.infograph-body {
+  height: 60vh;
+  width: 76%;
+  border-radius: 150px 150px 0 150px;
+  background-color: $infoGraphColorLight;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 5% 10% 0 0;
+}
+//!!! Дата на Графике
+
+.infograph-date {
+  height: 20vh;
+  width: 100%;
+  border: 2px solid yellow;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5vh 8vh;
+}
+%infograph-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $mainFont;
+  font-weight: bold;
+  font-size: $infoGraphDateFontSize;
+}
+
+.infograph-day {
+  height: 10vh;
+  width: 10vh;
+  @extend %infograph-date;
+  border-radius: 0 150px 150px 150px;
+  background-color: $infoGraphColorWhite;
+  color: $infoGraphColorDark;
+  padding: 4%;
+  border: 2px solid blue;
+  margin-left: 8%; //!!!отступ даты от левого края - для адаптивной верстки
+}
+
+.infograph-month {
+  height: 10vh;
+  width: 20vw;
+  @extend %infograph-date;
+  border-radius: 0 50px 0% 50px;
+  background-color: $infoGraphColorDark;
+  color: $infoGraphColorWhite;
+  margin-left: 1vh;
+  padding: 10px 25px;
+  border: 2px solid green;
+}
+//!!!Дата на Графике END
+
+//!!!Основной график
+.infograph {
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  border: 2px solid brown;
+}
+%infograph {
+  background-color: $infoGraphColorDark;
+}
+
+.infograph-full {
+  @extend %infograph;
+  height: 35vh;
+  width: 80%;
+  border-radius: 70px;
+}
+
+.infograph-short {
+  @extend %infograph;
+  height: 35vh;
+  width: 8%;
+  border-radius: 70px 0 0 70px;
+  filter: blur(1.5px);
+  margin: 0 3% 0 2%;
+}

@@ -1,0 +1,74 @@
+/* Mixins:
+   ========================================================================== */
+
+// px to rem
+// @function rem($pixels, $context: $mainFontSize) {
+//   @if (unitless($pixels)) {
+//     $pixels: $pixels * 1px;
+//   }
+//   @if (unitless($context)) {
+//     $context: $context * 1px;
+//   }
+//   @return $pixels / $context * 1rem;
+// }
+
+// // size to one line
+// @mixin size($width, $height: $width) {
+//   width: $width;
+//   height: $height;
+// }
+
+// // placeholder helper
+// @mixin placeholder {
+//   ::-webkit-input-placeholder {
+//     @content;
+//   }
+//   :-moz-placeholder {
+//     @content;
+//   }
+//   ::-moz-placeholder {
+//     @content;
+//   }
+//   :-ms-input-placeholder {
+//     @content;
+//   }
+// }
+//!! Mixin для определения цвета карточки
+// @mixin cardColor($numElem, $amountELem, $type, $red, $green, $blue) {
+//   @if ($type == "family") {
+//     background-color: rgb(
+//       red($cardColorFamily) + $red,
+//       green($cardColorFamily) + $green,
+//       blue($cardColorFamily) + $blue
+//     );
+//   }
+// }
+
+@mixin cardColor($numElem, $amountElem, $type, $darkColor, $lightColor) {
+  @if ($type == "family") {
+    background-color: rgb(
+      red($darkColor) +
+        ((red($lightColor) - red($darkColor)) / ($amountElem - 2)) *
+        ($amountElem - $numElem),
+      green($darkColor) +
+        ((green($lightColor) - green($darkColor)) / ($amountElem - 2)) *
+        ($amountElem - $numElem),
+      blue($darkColor) +
+        ((blue($lightColor) - blue($darkColor)) / ($amountElem - 2)) *
+        ($amountElem - $numElem)
+    );
+  }
+  @if ($type == "fun") {
+    background-color: rgb(
+      red($darkColor) +
+        ((red($lightColor) - red($darkColor)) / ($amountElem - 2)) *
+        ($numElem - 1),
+      green($darkColor) +
+        ((green($lightColor) - green($darkColor)) / ($amountElem - 2)) *
+        ($numElem - 1),
+      blue($darkColor) +
+        ((blue($lightColor) - blue($darkColor)) / ($amountElem - 2)) *
+        ($numElem - 1)
+    );
+  }
+}

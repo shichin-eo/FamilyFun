@@ -1,0 +1,28 @@
+/* Fonts:
+   https://github.com/vedees/webpack-template/blob/master/README.md#import-js-files
+   ========================================================================== */
+
+@font-face {
+  font-family: "RuslanDisplay-Regular";
+  src: url("/assets/fonts/RuslanDisplay/RuslanDisplay-Regular.eot"); /* IE9 Compat Modes */
+  src: url("/assets/fonts/RuslanDisplay/RuslanDisplay-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("/assets/fonts/RuslanDisplay/RuslanDisplay-Regular.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */
+      url("/assets/fonts/RuslanDisplay/RuslanDisplay-Regular.ttf")
+      format("truetype"); /* Safari, Android, iOS */
+  //  url('/assets/fonts/HelveticaNeueCyr/Black/HelveticaNeueCyr-Black.svg') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: "MontserratMedium";
+  src: url("/assets/fonts/Montserrat/MontserratMedium.eot"); /* IE9 Compat Modes */
+  src: url("/assets/fonts/Montserrat/MontserratMedium.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("/assets/fonts/Montserrat/MontserratMedium.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */
+      url("/assets/fonts/Montserrat/MontserratMedium.ttf") format("truetype"); /* Safari, Android, iOS */
+  //  url('/assets/fonts/HelveticaNeueCyr/Black/HelveticaNeueCyr-Black.svg') format('svg'); /* Legacy iOS */
+}

@@ -1,0 +1,77 @@
+.pushNotification {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80%;
+  width: 50%;
+  font-family: $mainFont;
+}
+
+.pushNotification-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 5vh;
+  width: 100%;
+  // border: 2px solid blue;
+  background-color: white;
+}
+
+.pushNotification-recipient,
+.pushNotification-timer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 30%;
+}
+
+.pushNotification-timer {
+  margin-left: 15%;
+}
+
+.pushNotification-recipient-counter,
+.pushNotification-timer-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 70%;
+  width: 35%;
+}
+// .pushNotification-timer-hour {
+//   width: 100%;
+//   text-align: center;
+//   border: 3px solid #f66f6c;
+//   padding: 2px 0;
+//   border-radius: 10px;
+// }
+
+// !!!! ПРОШЛАЯ ВЕРСИЯ С ДВУМЯ КНОПКАМИ
+.pushNotification-timer-hour {
+  width: 50%;
+  text-align: center;
+  border-right: 1.5px solid #f66f6c;
+  border-left: 3px solid #f66f6c;
+  border-top: 3px solid #f66f6c;
+  border-bottom: 3px solid #f66f6c;
+  border-radius: 10px 0 0 10px;
+}
+.pushNotification-timer-minute {
+  width: 50%;
+  text-align: center;
+  border-left: 1.5px solid #f66f6c;
+  border-right: 3px solid #f66f6c;
+  border-top: 3px solid #f66f6c;
+  border-bottom: 3px solid #f66f6c;
+  border-radius: 0 10px 10px 0;
+}
+
+.pushNotification-recipient-amount,
+.pushNotification-timer-hour,
+.pushNotification-timer-minute {
+  color: #f66f6c;
+}

@@ -1,0 +1,33 @@
+.card-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 14vh;
+  width: 70%;
+  position: absolute;
+  border-radius: 10px;
+}
+
+.card-input {
+  width: 95%;
+  height: 3.5vh;
+  border-radius: 18px;
+  font-weight: bold;
+  font-family: $mainFont;
+  padding-left: 1vh;
+  font-size: 0.8vw;
+}
+.card-name {
+  width: 90%;
+  height: 8vh;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  font-weight: bold;
+  font-family: $mainFont;
+  font-size: 0.8vw;
+}
+.card-input::placeholder {
+  color: #dcdcdc;
+}

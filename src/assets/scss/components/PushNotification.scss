@@ -25,22 +25,29 @@
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+  // border: dashed 1px purple;
   height: 100%;
-  width: 30%;
+  width: 35%;
 }
 
-.pushNotification-timer {
-  margin-left: 15%;
-}
-
-.pushNotification-recipient-counter,
 .pushNotification-timer-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
   height: 70%;
-  width: 35%;
+  width: 40%;
+}
+
+.pushNotification-recipient-counter {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 70%;
+  width: 40%;
+  // border: black 3px dashed;
+  margin-left: 10px;
 }
 // .pushNotification-timer-hour {
 //   width: 100%;
@@ -49,24 +56,26 @@
 //   padding: 2px 0;
 //   border-radius: 10px;
 // }
-
+.pushNotification-timer {
+  margin-left: 15%;
+}
 // !!!! ПРОШЛАЯ ВЕРСИЯ С ДВУМЯ КНОПКАМИ
 .pushNotification-timer-hour {
   width: 50%;
   text-align: center;
-  border-right: 1.5px solid #f66f6c;
-  border-left: 3px solid #f66f6c;
-  border-top: 3px solid #f66f6c;
-  border-bottom: 3px solid #f66f6c;
+  border-right: 1px solid #f66f6c;
+  border-left: 2px solid #f66f6c;
+  border-top: 2px solid #f66f6c;
+  border-bottom: 2px solid #f66f6c;
   border-radius: 10px 0 0 10px;
 }
 .pushNotification-timer-minute {
   width: 50%;
   text-align: center;
-  border-left: 1.5px solid #f66f6c;
-  border-right: 3px solid #f66f6c;
-  border-top: 3px solid #f66f6c;
-  border-bottom: 3px solid #f66f6c;
+  border-left: 1px solid #f66f6c;
+  border-right: 2px solid #f66f6c;
+  border-top: 2px solid #f66f6c;
+  border-bottom: 2px solid #f66f6c;
   border-radius: 0 10px 10px 0;
 }
 

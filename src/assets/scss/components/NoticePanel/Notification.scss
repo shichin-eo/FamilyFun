@@ -45,7 +45,7 @@
   width: 100%;
   height: 60%;
   // flex: 1;
-  border: 2px solid purple;
+  // border: 2px solid purple;
   margin-bottom: 1.5vh;
 }
 
@@ -72,7 +72,7 @@
 .notification-body > textarea {
   height: 100%;
   width: 100%;
-  border: royalblue 1px dashed;
+  // border: royalblue 1px dashed;
   padding: 1vh 2vh;
   color: $notificationFontColor;
   font-family: $mainFont;
@@ -92,15 +92,47 @@
 .notification-body > textarea:hover {
   overflow-y: auto;
 }
-
+// * Buttons
 .notification-control-btns {
   width: 7%;
   height: 100%;
   border: 1px solid black;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  position: relative;
+  padding: 0 1px;
+}
+
+.notify-edit,
+.notify-accept,
+.notify-remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  cursor: pointer;
+}
+.notify-edit svg,
+.notify-accept svg,
+.notify-remove svg {
+  width: 80%;
+  height: auto;
+}
+
+.notify-edit {
+  top: 1vh;
+}
+.notify-accept {
+  opacity: 0;
+  bottom: 1vh;
+  pointer-events: none;
+}
+.notify-remove {
+  opacity: 0;
+  top: 1vh;
+  pointer-events: none;
 }
 
 //! В зависимости от типа в props.type устанавливается background-color

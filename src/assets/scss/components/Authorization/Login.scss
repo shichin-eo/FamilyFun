@@ -1,0 +1,49 @@
+.login-container {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+  // border: 3px solid purple;
+
+  input {
+    height: 4vh;
+    width: 100%;
+    font-size: 2vh;
+    padding-left: 1vw;
+    border-radius: 10px;
+    border: 2px solid yellow;
+  }
+
+  .login-buttons-container {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    // border: 3px solid yellowgreen;
+    position: relative;
+
+    button {
+      width: 40%;
+      height: 100%;
+      font-size: 1vh;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    button.login-btn {
+      background-color: $funBtnColor;
+    }
+    button.register-btn {
+      background-color: $familyBtnColor;
+    }
+    button.back-btn {
+      width: 10%;
+      background-color: #ffffff;
+      color: #000000;
+      font-size: 0.5rem;
+    }
+  }
+}

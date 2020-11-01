@@ -1,28 +1,29 @@
 .cardPanel-container {
   height: 100vh;
   width: 25vw;
-  border: 2px dashed rgb(0, 0, 0);
+  // border: 2px dashed rgb(0, 0, 0);
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(to right top, #dfdfdf, #ffff 90%);
 }
 
 .cardPanel-container img {
   height: 20vh;
   width: 100%;
-  border: double 2px red;
+  // width: 100%;
+  // border: double 2px red;
   margin-top: 5vh;
+  object-fit: contain;
 }
 
 .cardPanel {
   height: 60vh;
   width: 80%;
-  border: solid 2px lightblue;
+  // border: solid 2px lightblue;
   border-radius: 15px;
-  margin-top: 3vh;
-  background: white;
+  margin-top: 2vh;
+  background: $cardPanelBG;
   position: relative;
 }
 

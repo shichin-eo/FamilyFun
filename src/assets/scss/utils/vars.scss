@@ -1,16 +1,22 @@
-/*
-* * Vars:
-*/
+//* Vars: *
 
-//! Common Settings
+//!-------- Common Settings---------------
+$main-font: "MontserratMedium", sans-serif;
+$main-background: #f5f5f5;
+
+//!-------- Header settings---------------
+$header-color: #f66f6c;
+$header-font-color: #ffffff;
+
+//???? на удаление
 $mainFont: "MontserratMedium", sans-serif;
 $mainBackground: #f5f5f5;
-//Menu settings
+
 $menuColor: #f66f6c;
 $menuHeight: 19vh;
 $menuWidth: 100%;
 $menuFontColor: #ffffff;
-$menuFontSize: 3vh;
+$menuFontSize: 2.5vh;
 
 //Menu settings end
 
@@ -22,7 +28,14 @@ $infoGraphColorWhite: #ffffff;
 $infoGraphDateFontSize: 3vw;
 // InfoGraph settings end
 
+//! PanelOfCards main setting
+$panelOfCardsMainBG: #f5f5f5;
+
 //! CardPanel settings
+// * MAIN CardPanel
+
+$cardPanelBG: #ffffff;
+
 // * Картотека Family
 $cardColorFamilyDark: rgb(237, 144, 51);
 $cardColorFamily1: rgb(238, 156, 48);
@@ -41,6 +54,7 @@ $cardColorFunLight: rgb(217, 154, 224);
 
 //! CardforAddition
 // * Нейтральная карточка
+$cardForAdditionBG: #ffffff;
 $cardColorNeutral: #dcd7dd;
 $crosshairColor: #ffffff;
 $funBtnColor: #7967c8;
@@ -110,4 +124,6 @@ $desktopWidth: 1224px;
 //??Большие экраны
 $desktopLargeWidth: 1824px;
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-$assetsPath: "../../img/" !default;
+// $assetsPath: "../../../img/" !default;
+
+$assetsPath: "../~/" !default;

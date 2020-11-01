@@ -2,7 +2,9 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-
+//!new
+require("babel-polyfill");
+//!new end
 const PATHS = {
   src: path.join(__dirname, "../src"),
   dist: path.join(__dirname, "../dist"),
@@ -13,8 +15,9 @@ module.exports = {
   externals: {
     paths: PATHS,
   },
+  //! UPDATED polyfill
   entry: {
-    app: PATHS.src,
+    app: ["babel-polyfill", PATHS.src],
   },
   output: {
     filename: `${PATHS.assets}js/[name].[hash].js`,

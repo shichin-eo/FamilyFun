@@ -34,16 +34,6 @@
 //   }
 // }
 //!! Mixin для определения цвета карточки
-// @mixin cardColor($numElem, $amountELem, $type, $red, $green, $blue) {
-//   @if ($type == "family") {
-//     background-color: rgb(
-//       red($cardColorFamily) + $red,
-//       green($cardColorFamily) + $green,
-//       blue($cardColorFamily) + $blue
-//     );
-//   }
-// }
-
 @mixin cardColor($numElem, $amountElem, $type, $darkColor, $lightColor) {
   @if ($type == "family") {
     background-color: rgb(
@@ -71,4 +61,8 @@
         ($numElem - 1)
     );
   }
+}
+
+@mixin transition-ease {
+  transition: all 0.5s ease-in-out;
 }

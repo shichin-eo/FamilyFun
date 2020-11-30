@@ -22,7 +22,7 @@
 .infograph-date {
   height: 20vh;
   width: 100%;
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -46,7 +46,7 @@
   background-color: $infoGraphColorWhite;
   color: $infoGraphColorDark;
   padding: 4%;
-  border: 2px solid blue;
+  // border: 2px solid blue;
   margin-left: 8%; //!!!отступ даты от левого края - для адаптивной верстки
 }
 
@@ -59,7 +59,7 @@
   color: $infoGraphColorWhite;
   margin-left: 1vh;
   padding: 10px 25px;
-  border: 2px solid green;
+  // border: 2px solid green;
 }
 //!!!Дата на Графике END
 
@@ -71,7 +71,7 @@
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: flex-start;
-  border: 2px solid brown;
+  // border: 2px solid brown;
 }
 %infograph {
   background-color: $infoGraphColorDark;

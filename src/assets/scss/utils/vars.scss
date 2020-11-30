@@ -11,6 +11,20 @@ $header-font-color: #ffffff;
 //???? на удаление
 $mainFont: "MontserratMedium", sans-serif;
 $mainBackground: #f5f5f5;
+//-----------//
+$cardColorFamilyDark: rgb(237, 144, 51);
+$cardColorFamily1: rgb(238, 156, 48);
+$cardColorFamily2: rgb(242, 165, 75);
+$cardColorFamily3: rgb(240, 183, 93);
+$cardColorFamily4: rgb(230, 208, 122);
+$cardColorFamilyLight: rgb(247, 233, 159);
+$cardColorFunDark: rgb(119, 103, 201);
+$cardColorFun1: rgb(150, 122, 232);
+$cardColorFun2: rgb(169, 120, 235);
+$cardColorFun3: rgb(172, 101, 223);
+$cardColorFun4: rgb(207, 117, 231);
+$cardColorFunLight: rgb(217, 154, 224);
+//????
 
 $menuColor: #f66f6c;
 $menuHeight: 19vh;
@@ -28,37 +42,31 @@ $infoGraphColorWhite: #ffffff;
 $infoGraphDateFontSize: 3vw;
 // InfoGraph settings end
 
-//! PanelOfCards main setting
-$panelOfCardsMainBG: #f5f5f5;
+//! *** START PanelOfCards settings *** !//
+$panel-of-cards-main-bg: #f5f5f5;
 
-//! CardPanel settings
+//-------- CardPanel settings-----------//
 // * MAIN CardPanel
-
-$cardPanelBG: #ffffff;
-
+$card-panel-bg: #ffffff;
 // * Картотека Family
-$cardColorFamilyDark: rgb(237, 144, 51);
-$cardColorFamily1: rgb(238, 156, 48);
-$cardColorFamily2: rgb(242, 165, 75);
-$cardColorFamily3: rgb(240, 183, 93);
-$cardColorFamily4: rgb(230, 208, 122);
-$cardColorFamilyLight: rgb(247, 233, 159);
-
+$card-color-family-dark: rgb(237, 144, 51);
+$card-color-family-light: rgb(247, 233, 159);
 // * Картотека FUN
-$cardColorFunDark: rgb(119, 103, 201);
-$cardColorFun1: rgb(150, 122, 232);
-$cardColorFun2: rgb(169, 120, 235);
-$cardColorFun3: rgb(172, 101, 223);
-$cardColorFun4: rgb(207, 117, 231);
-$cardColorFunLight: rgb(217, 154, 224);
-
+$card-color-fun-dark: rgb(119, 103, 201);
+$card-color-fun-light: rgb(217, 154, 224);
 //! CardforAddition
 // * Нейтральная карточка
-$cardForAdditionBG: #ffffff;
-$cardColorNeutral: #dcd7dd;
-$crosshairColor: #ffffff;
-$funBtnColor: #7967c8;
-$familyBtnColor: #f7eb98;
+$card-for-addition-bg: #ffffff;
+$card-color-neutral: #dcd7dd;
+$cross-hair-color: #ffffff;
+$fun-btn-color: #7967c8;
+$family-btn-color: #f7eb98;
+//! Card
+// * Карточка
+$card-category-text-color: #000099;
+$card-placeholder-color: #dcdcdc;
+
+//! *** END PanelOfCards settings  *** !//
 
 //! -------------NoticePanel-----------------
 $noticePanelHeight: 35vh;
@@ -107,23 +115,51 @@ $border-lighter: #ebeef5;
 $border-lightex: #f2f6fc;
 
 //!! Size
-$mainFontColor: #101010;
-$mainFontSize: 18px;
-$mainFontWeight: 400;
-$mainLineHeight: 1.4;
-//??Смартфоны (Портрет и ландшафтный)
-$phoneMinWidth: 320px;
-$phoneMaxWidth: 480px;
-//??Смартфоны (ландшафтный)
-$smPhoneWidth: 321px;
-//??Планшеты (Портрет и Ландшафтный)
-$tableMinWidth: 768px;
-$tableMaxWidth: 1024px;
-//??Настольные компьютеры и ноутбуки
-$desktopWidth: 1224px;
-//??Большие экраны
-$desktopLargeWidth: 1824px;
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// $assetsPath: "../../../img/" !default;
+// $mainFontColor: #101010;
+
+// $mainFontWeight: 400;
+// $mainLineHeight: 1.4;
+// //*Phone = portrait + landscape
+// $phone-min-width: 320px;
+// $phone-max-width: 480px;
+// //*Phone = landscape
+// $phone-landscape-min-width: 321px;
+// //*Phone = portrait
+// $phone-portrait-max-width: 320px;
+// //*Tablet = portrait + landscape
+// $tablet-min-width: 768px;
+// $tablet-max-width: 1024px;
+// //*Laptop
+// $laptop-min-width: 1224px;
+// //*Desktop
+// $desktop-min-width: 1824px;
 
 $assetsPath: "../~/" !default;
+
+// $media-min-widths: (
+//   "phone": $phone-min-width,
+//   "phone-landscape": $phone-landscape-min-width,
+//   "tablet": $tablet-min-width,
+//   "laptop": $laptop-min-width,
+//   "descktop": $desktop-min-width,
+// );
+
+// $media-max-widths: (
+//   "phone": $phone-max-width,
+//   "phone-portrait": $phone-portrait-max-width,
+//   "tablet": $tablet-max-width,
+// );
+
+// $media-min-widths: (
+//   //   "phone": 320px,
+//   "phone-landscape": 321px,
+//   "tablet": 768px,
+//   "laptop": 1224px,
+//   "desktop": 1824px
+// );
+
+// $media-max-widths: (
+//   //   "phone": 480px,
+//   "phone-portrait": 320px,
+//   "tablet": 1024px
+// );

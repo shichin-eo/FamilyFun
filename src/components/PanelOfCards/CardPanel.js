@@ -1,31 +1,67 @@
-import React from "react";
+import React, { memo } from "react";
 import Card from "./Card";
 
-const CardPanel = (props) => {
-  const LOGO_CARD_PANEL = props.url;
-  const cards = props.cards;
+import { useSelector } from "react-redux";
 
-  const COUNT_CARDS = 6;
+const CardPanel = ({ type }) => {
+  const familyCards = useSelector((state) => state.cards.familyCards);
+  const funCards = useSelector((state) => state.cards.funCards);
+
   const emptyCard = {
-    card_title: "Заголовок",
+    card_category: "Категория",
     card_description: "Описание",
   };
+  //*** function for fill the list of cards */
+  function fillListCards(cards) {
+    const nocards = [
+      emptyCard,
+      emptyCard,
+      emptyCard,
+      emptyCard,
+      emptyCard,
+      emptyCard,
+    ];
+    let currentCards = [...cards].sort(
+      (prev, next) => prev["card_priority"] - next["card_priority"]
+    );
 
-  for (let i = cards.length; i < COUNT_CARDS; i++) {
-    cards.push(emptyCard);
+    const result = [...currentCards, ...nocards];
+    result.length = 6;
+    return result;
   }
+  //*** function for fill cardPanel */
+  const fillCardPanel = (panelType) => {
+    switch (panelType) {
+      case "family":
+        return {
+          img: "../assets/img/family.png",
+          cards: fillListCards(familyCards),
+        };
+      case "fun":
+        return {
+          img: "../assets/img/fun.png",
+          cards: fillListCards(funCards),
+        };
+      default:
+        return { img: "../assets/img/404.jpg", cards: [] };
+    }
+  };
+  //* Current panel of cards
+  const panel = fillCardPanel(type);
+
   return (
     <>
       <div className="cardPanel-container">
-        <img src={LOGO_CARD_PANEL} alt=""></img>
+        <div className={`cardPanel_img_${type}`}>
+          <img src={panel.img} alt="CardPanel Image"></img>
+        </div>
         <div className="cardPanel">
-          {cards.map((card, index) => {
+          {panel.cards.map((card, index) => {
             return (
               <Card
-                id={`card${index + 1}`}
-                key={`card${index + 1}`}
-                cardType={card["card_title"]}
-                cardInfo={card["card_description"]}
+                card={card}
+                id={`${type}Card${index}`}
+                key={`${type}Card${index}`}
               />
             );
           })}
@@ -35,4 +71,4 @@ const CardPanel = (props) => {
   );
 };
 
-export default CardPanel;
+export default memo(CardPanel);

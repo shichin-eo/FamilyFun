@@ -1,16 +1,18 @@
+@import "./media_Header";
 .header {
   height: 19vh;
   width: 100%;
   background-color: $header-color;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 2.5vh;
   color: $header-font-color;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
 
-  &__settings {
-    cursor: pointer;
-  }
+  // &__settings {
+  //   width: 15%;
+  //   cursor: pointer;
+  // }
 }

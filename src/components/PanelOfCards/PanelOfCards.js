@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardPanel from "./CardPanel";
 import CardforAddition from "./CardForAddition";
+import Alert from "../Alert/Alert";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCards } from "../../redux/actions";
 
+//?
+import Loader from "../Loader/Loader";
 const PanelOfCards = () => {
-  const [cards, setCards] = useState([]);
-  const cardPanelImages = {
-    familyUrl: "../assets/img/family.png",
-    funUrl: "../assets/img/fun.png",
+  const dispatch = useDispatch();
+  const userCards = useSelector((state) => state.cards.fetchedCards);
+  // const loading = useSelector((state) => state.app.loading);
+  const alert = useSelector((state) => state.app.alert);
+
+  const setAlertType = (alertText) => {
+    let alertType = "error";
+    if (alertText.indexOf("wrong") === -1) {
+      alertType = "success";
+    }
+    return alertType;
   };
-  const cardPanelTypes = ["family", "fun"];
-
-  const panelCards = [
-    {
-      cardType: "family",
-      cardName: "",
-      cardInfo: "",
-    },
-  ];
-
-  async function getPersonalCards() {
-    const url = "http://localhost:3000/api/v1/cards/1";
-    const response = await fetch(url);
-    const data = await response.json();
-    setCards(data);
-    console.log(data);
-  }
-
-  const familyCards = cards.filter((card) => card["card_type"] === "family");
-  const funCards = cards.filter((card) => card["card_type"] === "fun");
-
   useEffect(() => {
-    getPersonalCards();
+    dispatch(fetchCards());
   }, []);
+  console.log(`userCards 777 = ${userCards}`);
 
+  // if (loading) {
+  //   //!РАСКОММЕНТИРОВАТЬ
+  //   return <Loader />;
+  // }
   return (
     <>
       <div className="panelOfCards-container">
-        <CardPanel cards={familyCards} url={cardPanelImages.familyUrl} />
+        <Loader />
+        <CardPanel type={"family"} />
         <CardforAddition />
-        <CardPanel cards={funCards} url={cardPanelImages.funUrl} />
+        <CardPanel type={"fun"} />
+        {alert && <Alert text={alert} type={setAlertType(alert)} />}
       </div>
     </>
   );

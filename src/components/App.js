@@ -12,8 +12,8 @@ class App extends Component {
         <Header />
         {/* <InfoGraph /> */}
         <PanelOfCards />
-        {/* <NoticePanel />
-        <Authorization /> */}
+        {/* <NoticePanel /> */}
+        {/* <Authorization /> */}
       </div>
     );
   }

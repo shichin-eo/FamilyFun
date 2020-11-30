@@ -1,0 +1,85 @@
+.card-btns-container {
+  position: absolute;
+  height: 2vh;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-flow: row nowrap;
+  // svg {
+  //   pointer-events: all;
+  // }
+  .card-options {
+    width: 10%;
+    height: 100%;
+    opacity: 0.5;
+    cursor: pointer;
+    @include transition-ease;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .card-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 20%;
+    height: 100%;
+    opacity: 0;
+    @include transition-ease;
+    pointer-events: none;
+    &_trash {
+      width: 50%;
+      height: 100%;
+      @include transition-ease;
+    }
+    &_edit {
+      width: 50%;
+      height: 100%;
+      @include transition-ease;
+    }
+    &_save {
+      width: 50%;
+      height: 100%;
+      @include transition-ease;
+    }
+    &_trash:hover {
+      animation: shakeBtn 0.5s ease-in-out infinite;
+    }
+    &_edit:hover {
+      transform: scale(1.1, 1.1);
+    }
+    &_save:hover {
+      transform: scale(1.1, 1.1);
+    }
+    &.show {
+      opacity: 1;
+      pointer-events: all;
+      cursor: pointer;
+    }
+  }
+  .family {
+    color: $header-color;
+  }
+  .fun {
+    color: $header-color;
+  }
+}
+
+@keyframes shakeBtn {
+  0% {
+    transform: rotate(-15deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
+}

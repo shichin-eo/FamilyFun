@@ -1,183 +1,197 @@
 .cardPanel-container {
   height: 100vh;
   width: 25vw;
-  // border: 2px dashed rgb(0, 0, 0);
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-}
+  .cardPanel_img_fun {
+    margin-top: 5vh;
+    height: 150px;
+    width: auto;
+    background: url("../../../img/fun.png") 50% 50%;
+    background-size: 100% 100%;
+    img {
+      opacity: 0;
+    }
+  }
+  .cardPanel_img_family {
+    margin-top: 5vh;
+    height: 150px;
+    width: auto;
+    background: url("../../../img/family.png") 50% 50%;
+    background-size: 100% 100%;
 
-.cardPanel-container img {
-  height: 20vh;
-  width: 100%;
-  // width: 100%;
-  // border: double 2px red;
-  margin-top: 5vh;
-  object-fit: contain;
-}
+    img {
+      opacity: 0;
+    }
+  }
+  .cardPanel {
+    height: 60vh;
+    width: 80%;
+    border-radius: 15px;
+    margin-top: 2vh;
+    background: $card-panel-bg;
+    position: relative;
+  }
 
-.cardPanel {
-  height: 60vh;
-  width: 80%;
-  // border: solid 2px lightblue;
-  border-radius: 15px;
-  margin-top: 2vh;
-  background: $cardPanelBG;
-  position: relative;
-}
+  #familyCard0 {
+    top: 2vh;
+    left: 15%;
+    z-index: 1;
+    @include cardColor(
+      1,
+      6,
+      "family",
+      $card-color-family-dark,
+      $card-color-family-light
+    );
+  }
 
-// .card {              //!! Перевел в отдельный компонент
-//   height: 14vh;
-//   width: 70%;
-//   position: absolute;
-//   border-radius: 10px;
-// }
+  #familyCard1 {
+    top: 10vh;
+    left: 15%;
+    z-index: 2;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      2,
+      6,
+      "family",
+      $card-color-family-dark,
+      $card-color-family-light
+    );
+  }
+  #familyCard2 {
+    top: 18vh;
+    left: 15%;
+    z-index: 3;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      3,
+      6,
+      "family",
+      $card-color-family-dark,
+      $card-color-family-light
+    );
+  }
+  #familyCard3 {
+    top: 26vh;
+    left: 15%;
+    z-index: 4;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      4,
+      6,
+      "family",
+      $card-color-family-dark,
+      $card-color-family-light
+    );
+  }
+  #familyCard4 {
+    top: 34vh;
+    left: 15%;
+    z-index: 5;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      5,
+      6,
+      "family",
+      $card-color-family-dark,
+      $card-color-family-light
+    );
+  }
+  #familyCard5 {
+    top: 42vh;
+    left: 15%;
+    z-index: 6;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
 
-// .cardPanel :nth-child(1) {
-//   top: 2vh;
-//   left: 15%;
-//   z-index: 1;
-//   background-color: $cardColorFamilyLight;
-//   //?? @include cardColor(1, 6, "family", $cardColorFamilyDark, $cardColorFamilyLight);
-//   //?? @include cardColor(1, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-// }
+    @include cardColor(
+      6,
+      6,
+      "family",
+      $card-color-family-dark,
+      $card-color-family-light
+    );
+  }
 
-// .cardPanel :nth-child(2) {
-//   top: 10vh;
-//   left: 15%;
-//   z-index: 2;
-//   box-shadow: 0 0 0.3vh rgba(0, 0, 0, 0.5);
-//   background-color: $cardColorFamily4;
-//   //?? @include cardColor(2, 6, "family", $cardColorFamilyDark, $cardColorFamilyLight);
-//   //?? @include cardColor(2, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-// }
-// .cardPanel :nth-child(3) {
-//   top: 18vh;
-//   left: 15%;
-//   z-index: 3;
-//   box-shadow: 0 0 0.3vh rgba(0, 0, 0, 0.5);
-//   background-color: $cardColorFamily3;
-//   //??  @include cardColor(3, 6, "family", $cardColorFamilyDark, $cardColorFamilyLight);
-//   //?? @include cardColor(3, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-// }
-// .cardPanel :nth-child(4) {
-//   top: 26vh;
-//   left: 15%;
-//   z-index: 4;
-//   box-shadow: 0 0 0.3vh rgba(0, 0, 0, 0.5);
-//   background-color: $cardColorFamily2;
-//   //??  @include cardColor(4, 6, "family", $cardColorFamilyDark, $cardColorFamilyLight);
-//   //?? @include cardColor(4, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-// }
-// .cardPanel :nth-child(5) {
-//   top: 34vh;
-//   left: 15%;
-//   z-index: 5;
-//   box-shadow: 0 0 0.3vh rgba(0, 0, 0, 0.5);
-//   background-color: $cardColorFamily1;
-//   //??  @include cardColor(5, 6, "family", $cardColorFamilyDark, $cardColorFamilyLight);
-//   //?? @include cardColor(5, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-// }
-// .cardPanel :nth-child(6) {
-//   top: 42vh;
-//   left: 15%;
-//   z-index: 6;
-//   box-shadow: 0 0 0.3vh rgba(0, 0, 0, 0.5);
-//   background-color: $cardColorFamilyDark;
+  #funCard0 {
+    top: 2vh;
+    left: 15%;
+    z-index: 1;
 
-//   //?? @include cardColor(6, 6, "family", $cardColorFamilyDark, $cardColorFamilyLight);
-//   //?? @include cardColor(6, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-// }
+    @include cardColor(
+      1,
+      6,
+      "fun",
+      $card-color-fun-dark,
+      $card-color-fun-light
+    );
+  }
 
-#card1 {
-  top: 2vh;
-  left: 15%;
-  z-index: 1;
-  //??  background-color: $cardColorFamilyLight;
-  @include cardColor(
-    1,
-    6,
-    "family",
-    $cardColorFamilyDark,
-    $cardColorFamilyLight
-  );
-  //??@include cardColor(1, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-}
-
-#card2 {
-  top: 10vh;
-  left: 15%;
-  z-index: 2;
-  box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
-  //?? background-color: $cardColorFamily4;
-  @include cardColor(
-    2,
-    6,
-    "family",
-    $cardColorFamilyDark,
-    $cardColorFamilyLight
-  );
-  //??@include cardColor(2, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-}
-#card3 {
-  top: 18vh;
-  left: 15%;
-  z-index: 3;
-  box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
-  //?? background-color: $cardColorFamily3;
-  @include cardColor(
-    3,
-    6,
-    "family",
-    $cardColorFamilyDark,
-    $cardColorFamilyLight
-  );
-  //??@include cardColor(3, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-}
-#card4 {
-  top: 26vh;
-  left: 15%;
-  z-index: 4;
-  box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
-  //?? background-color: $cardColorFamily2;
-  @include cardColor(
-    4,
-    6,
-    "family",
-    $cardColorFamilyDark,
-    $cardColorFamilyLight
-  );
-  //??@include cardColor(4, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-}
-#card5 {
-  top: 34vh;
-  left: 15%;
-  z-index: 5;
-  box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
-  //??  background-color: $cardColorFamily1;
-  @include cardColor(
-    5,
-    6,
-    "family",
-    $cardColorFamilyDark,
-    $cardColorFamilyLight
-  );
-  //??@include cardColor(5, 6, "fun", $cardColorFunDark, $cardColorFunLight);
-}
-#card6 {
-  top: 42vh;
-  left: 15%;
-  z-index: 6;
-  box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
-  //??  background-color: $cardColorFamilyDark;
-
-  @include cardColor(
-    6,
-    6,
-    "family",
-    $cardColorFamilyDark,
-    $cardColorFamilyLight
-  );
-  //??@include cardColor(6, 6, "fun", $cardColorFunDark, $cardColorFunLight);
+  #funCard1 {
+    top: 10vh;
+    left: 15%;
+    z-index: 2;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      2,
+      6,
+      "fun",
+      $card-color-fun-dark,
+      $card-color-fun-light
+    );
+  }
+  #funCard2 {
+    top: 18vh;
+    left: 15%;
+    z-index: 3;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      3,
+      6,
+      "fun",
+      $card-color-fun-dark,
+      $card-color-fun-light
+    );
+  }
+  #funCard3 {
+    top: 26vh;
+    left: 15%;
+    z-index: 4;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      4,
+      6,
+      "fun",
+      $card-color-fun-dark,
+      $card-color-fun-light
+    );
+  }
+  #funCard4 {
+    top: 34vh;
+    left: 15%;
+    z-index: 5;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      5,
+      6,
+      "fun",
+      $card-color-fun-dark,
+      $card-color-fun-light
+    );
+  }
+  #funCard5 {
+    top: 42vh;
+    left: 15%;
+    z-index: 6;
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.5);
+    @include cardColor(
+      6,
+      6,
+      "fun",
+      $card-color-fun-dark,
+      $card-color-fun-light
+    );
+  }
 }

@@ -1,0 +1,42 @@
+.alert {
+  position: fixed;
+  width: 20%;
+  height: 10vh;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  opacity: 1;
+  transition: all 2s ease;
+  animation: showAlert 3s ease-in-out;
+  padding: 10px 10px;
+
+  &_success {
+    background-color: #cbd3ce;
+    border: 3px solid #18843e;
+    color: #18843e;
+    font-size: 1.5rem;
+  }
+  &_error {
+    background-color: #e99c94;
+    border: 3px solid #d52513;
+    color: #d52513;
+    font-size: 1rem;
+  }
+}
+
+@keyframes showAlert {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

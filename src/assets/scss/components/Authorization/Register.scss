@@ -18,7 +18,7 @@
     width: 100%;
     font-size: 1vh;
     background-color: #ffffff;
-    color: $funBtnColor;
+    color: $fun-btn-color;
     border-radius: 10px;
     padding-left: 1vw;
   }
@@ -44,7 +44,7 @@
       font-size: 16px;
       height: 3vh;
       background-color: #ffffff;
-      color: $funBtnColor;
+      color: $fun-btn-color;
       border-radius: 10px;
       padding-left: 3%;
     }
@@ -53,7 +53,7 @@
       width: 40%;
       height: 3vh;
       background-color: #ffffff;
-      color: $funBtnColor;
+      color: $fun-btn-color;
       border-radius: 10px;
     }
   }
@@ -72,13 +72,13 @@
   }
 
   .signup-btn {
-    background-color: $funBtnColor;
-    color: $familyBtnColor;
+    background-color: $fun-btn-color;
+    color: $family-btn-color;
     font-weight: bold;
   }
   .back-btn {
-    background-color: $familyBtnColor;
-    color: $funBtnColor;
+    background-color: $family-btn-color;
+    color: $fun-btn-color;
     font-weight: bold;
   }
 }

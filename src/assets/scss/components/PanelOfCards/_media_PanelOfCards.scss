@@ -1,0 +1,421 @@
+//******  Phone = landscape  ******//
+// @media only screen and (min-width: 321px) and (max-width: 480px) {
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  .panelOfCards-container {
+    width: 100%;
+    padding: 0;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .cardPanel-container {
+    height: 70vh;
+    width: 35vw;
+    .cardPanel_img_fun {
+      margin-top: 1vh;
+      height: 50px;
+    }
+    .cardPanel_img_family {
+      margin-top: 1vh;
+      height: 50px;
+    }
+    .cardPanel {
+      width: 90%;
+    }
+    #familyCard0,
+    #familyCard1,
+    #familyCard2,
+    #familyCard3,
+    #familyCard4,
+    #familyCard5,
+    #funCard0,
+    #funCard1,
+    #funCard2,
+    #funCard3,
+    #funCard4,
+    #funCard5 {
+      left: 10%;
+    }
+  }
+  .cardForAddition {
+    width: 28vw;
+    height: 22vh;
+    &_header {
+      &_plus {
+        font-size: 1.5rem;
+      }
+    }
+    &_main {
+      &_input {
+        font-size: 1.5vw;
+      }
+      &_list {
+        ul {
+          li {
+            font-size: 0.7rem;
+          }
+        }
+      }
+      &_category {
+        font-size: 1.5vw;
+        &_burger {
+          width: 1.5vh;
+          &_btn.active {
+            &::before {
+              transform: rotate(45deg) translate(32%, 40%);
+            }
+            &::after {
+              transform: rotate(-45deg) translate(32%, -40%);
+            }
+          }
+        }
+      }
+    }
+    &_btns {
+      &_lt_btn,
+      &_rt_btn {
+        font-size: 3vw;
+      }
+    }
+  }
+  .card-container {
+    width: 80%;
+    border-radius: 8px;
+    .card-input {
+      border-radius: 12px;
+      font-size: 1.5vw;
+    }
+    .card-category {
+      font-size: 1.5vw;
+    }
+  }
+}
+//******  Phone = portrait  ******//
+@media only screen and (max-width: 320px) {
+  //! PanelOfCards.scss
+  .panelOfCards-container {
+    width: 100%;
+    padding: 0;
+  }
+  //! CardPanel.scss media
+  .cardPanel-container {
+    margin-top: 1vh;
+    height: 25vh;
+    width: 100vw;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    .cardPanel_img_fun {
+      margin: 0;
+      height: 25vh;
+      width: 10%;
+      background: url("../../../img/fun_reverse.png") 50% 50%;
+      background-size: 100% 100%;
+    }
+    .cardPanel_img_family {
+      margin: 0;
+      height: 25vh;
+      width: 10%;
+      background: url("../../../img/family_reverse.png") 50% 50%;
+      background-size: 100% 100%;
+    }
+    .cardPanel {
+      height: 90%;
+      width: 88%;
+      margin: 0;
+      border-radius: 10px;
+    }
+    #familyCard0 {
+      top: 2vh;
+      left: 5%;
+    }
+    #familyCard1 {
+      top: 2vh;
+      left: 20%;
+    }
+    #familyCard2 {
+      top: 2vh;
+      left: 35%;
+    }
+    #familyCard3 {
+      top: 2vh;
+      left: 50%;
+    }
+    #familyCard4 {
+      top: 2vh;
+      left: 65%;
+    }
+    #familyCard5 {
+      top: 2vh;
+      left: 80%;
+    }
+    #funCard0 {
+      top: 2vh;
+      left: 5%;
+    }
+    #funCard1 {
+      top: 2vh;
+      left: 20%;
+    }
+    #funCard2 {
+      top: 2vh;
+      left: 35%;
+    }
+    #funCard3 {
+      top: 2vh;
+      left: 50%;
+    }
+    #funCard4 {
+      top: 2vh;
+      left: 65%;
+    }
+    #funCard5 {
+      top: 2vh;
+      left: 80%;
+    }
+  }
+  //! Card.scss media
+  .card-container {
+    width: 18%;
+    height: 80%;
+    border-radius: 5px;
+    .card-input {
+      font-size: 1.3vw;
+    }
+    .card-category {
+      flex-flow: column nowrap;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 1.8vw;
+    }
+  }
+  //! CardButtons.scss media
+  .card-btns-container {
+    height: 4vh;
+    .card-options {
+      width: 20%;
+    }
+    .card-btns {
+      width: 60%;
+      &_trash {
+        width: 40%;
+      }
+      &_edit {
+        width: 40%;
+      }
+    }
+  }
+  .cardForAddition {
+    width: 40vw;
+    height: 14vh;
+    border-radius: 5px;
+    padding: 0.5vh;
+    &_header {
+      left: 0%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      &_plus {
+        font-size: 1rem;
+      }
+    }
+    &_main {
+      width: 80%;
+      height: 90%;
+      border-radius: 5px;
+      box-shadow: 0 -1px 0.1vh rgba(0, 0, 0, 0.5);
+      &_input {
+        width: 90%;
+        border-radius: 10px;
+        font-size: 1.3vw;
+      }
+      &_list {
+        font-size: 1.3vw;
+      }
+      &_category {
+        font-size: 1.8vw;
+        &_burger {
+          &_btn {
+            top: 0.6vh;
+            height: 1px;
+            &::before {
+              top: -0.5vh;
+              height: 1px;
+            }
+            &::after {
+              top: 0.5vh;
+              height: 1px;
+            }
+            &.active {
+              top: -150%;
+              right: 20%;
+              &::before {
+                transform: rotate(45deg) translate(45%);
+              }
+              &::after {
+                // transform: rotate(-45deg) translateX(40%);
+                transform: rotate(-45deg) translate(45%);
+              }
+            }
+          }
+        }
+      }
+    }
+    &_btns {
+      width: 60%;
+      &_lt_btn,
+      &_rt_btn {
+        font-size: 3vw;
+      }
+    }
+  }
+}
+// //******  Tablet   ******//
+// @media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1224px) {
+  .panelOfCards-container {
+    width: 100%;
+
+    padding: 0;
+  }
+  .cardPanel-container {
+    height: 80vh;
+    width: 34vw;
+
+    .cardPanel_img_fun {
+      margin-top: 2vh;
+      height: 100px;
+    }
+    .cardPanel_img_family {
+      margin-top: 2vh;
+      height: 100px;
+    }
+    .cardPanel {
+      width: 90%;
+    }
+    #familyCard0,
+    #familyCard1,
+    #familyCard2,
+    #familyCard3,
+    #familyCard4,
+    #familyCard5,
+    #funCard0,
+    #funCard1,
+    #funCard2,
+    #funCard3,
+    #funCard4,
+    #funCard5 {
+      left: 10%;
+    }
+  }
+  .cardForAddition {
+    width: 28vw;
+    height: 22vh;
+    &_header {
+      &_plus {
+        font-size: 2.3rem;
+      }
+    }
+    &_main {
+      &_input {
+        font-size: 1.5vw;
+      }
+      &_category {
+        font-size: 1.5vw;
+      }
+    }
+    &_btns {
+      &_lt_btn,
+      &_rt_btn {
+        font-size: 2.5vw;
+      }
+    }
+  }
+  .card-container {
+    width: 80%;
+    border-radius: 8px;
+    .card-input {
+      border-radius: 12px;
+      font-size: 1.5vw;
+    }
+    .card-category {
+      font-size: 1.5vw;
+    }
+  }
+}
+// //******  Tablet = portrait   ******//
+// @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+//   .panelOfCards-container {
+//   }
+// }
+//******  Laptop  ******//
+@media only screen and (min-width: 1224px) and (max-width: 1824px) {
+  .panelOfCards-container {
+    width: 90%;
+    padding: 0;
+  }
+  .cardPanel-container {
+    height: 80vh;
+    width: 30vw;
+    .cardPanel_img_fun {
+      margin-top: 3vh;
+      height: 120px;
+    }
+    .cardPanel_img_family {
+      margin-top: 3vh;
+      height: 120px;
+    }
+    #familyCard0,
+    #familyCard1,
+    #familyCard2,
+    #familyCard3,
+    #familyCard4,
+    #familyCard5,
+    #funCard0,
+    #funCard1,
+    #funCard2,
+    #funCard3,
+    #funCard4,
+    #funCard5 {
+      left: 10%;
+    }
+  }
+  .cardForAddition {
+    width: 22vw;
+    height: 22vh;
+    &_header {
+      &_plus {
+        font-size: 2.3rem;
+      }
+    }
+    &_main {
+      &_input {
+        font-size: 1vw;
+      }
+      &_category {
+        font-size: 1vw;
+      }
+    }
+    &_btns {
+      &_lt_btn,
+      &_rt_btn {
+        font-size: 2vw;
+      }
+    }
+  }
+  .card-container {
+    width: 80%;
+    border-radius: 8px;
+    .card-input {
+      border-radius: 12px;
+      font-size: 1vw;
+    }
+    .card-category {
+      font-size: 1vw;
+    }
+  }
+}
+// //******  Desktop  ******//
+@media only screen and (min-width: 1824px) {
+  // .panelOfCards-container {
+  //   background-color: yellow;
+  // }
+}

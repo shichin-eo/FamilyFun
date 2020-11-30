@@ -11,6 +11,7 @@
 @import "components/PanelOfCards/PanelOfCards";
 @import "components/PanelOfCards/CardPanel";
 @import "components/PanelOfCards/Card";
+@import "components/PanelOfCards/CardButtons";
 @import "components/PanelOfCards/CardforAddition.scss";
 @import "components/NoticePanel/NoticePanel.scss";
 @import "components/NoticePanel/PushNotification.scss";
@@ -21,6 +22,10 @@
 @import "components/Authorization/Register.scss";
 
 @import "components/Authorization/Login.scss";
+
+@import "components/Alert/Alert.scss";
+
+@import "components/Loader/Loader.scss";
 
 .App {
   display: flex;

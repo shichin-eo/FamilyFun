@@ -5,21 +5,25 @@ import {
   faVoteYea,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Alert = ({ type, text = "Простое оповещение" }) => {
-  const alertIcon = (type = "success") => {
-    switch (type) {
+const Alert = ({ alert }) => {
+  const alertIcon = () => {
+    switch (alert.type) {
       case "success":
         return <FontAwesomeIcon icon={faVoteYea} />;
       case "error":
         return <FontAwesomeIcon icon={faExclamationTriangle} />;
       default:
-        return <h1>123</h1>;
+        return "";
     }
   };
   return (
-    <div className={`alert alert_${type}`}>
-      {alertIcon(type)}
-      <h1>{text}</h1>
+    <div className={`alert alert_${alert.type}`}>
+      {alertIcon()}
+      <div className="alert_message">
+        {alert.messages.map((message, index) => (
+          <h1 key={index}>{message}</h1>
+        ))}
+      </div>
     </div>
   );
 };

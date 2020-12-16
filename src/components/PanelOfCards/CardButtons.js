@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisV,
@@ -6,17 +6,33 @@ import {
   faEdit,
   faSave,
 } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteCard,
   enableEditCard,
   disableEditCard,
   updateCard,
+  showAlert,
 } from "../../redux/actions";
 
-const CardButtons = ({ card, description, setDescription }) => {
+const CardButtons = ({
+  card,
+  description,
+  setDescription,
+  sendUpdateCards,
+}) => {
   const type = card["card_type"];
+  const DESCRIPTION_LENGTH = 30;
   const dispatch = useDispatch();
+  const cardWasDeleted = useRef(false);
+  const familyCards = useSelector((state) => state.cards.familyCards);
+  const funCards = useSelector((state) => state.cards.funCards);
+  const fetchedCards = useSelector((state) => state.cards.fetchedCards);
+  const dbFamilyCards = fetchedCards.filter(
+    (card) => card["card_type"] === "family"
+  );
+  const dbFunCards = fetchedCards.filter((card) => card["card_type"] === "fun");
+
   //! The card can be edited
   const handlerEditableCard = (item) => {
     if (!item["editable"]) {
@@ -31,18 +47,53 @@ const CardButtons = ({ card, description, setDescription }) => {
   };
   //! Update card
   const updateCardHandler = (item) => {
-    if (item["editable"] && item["card_description"] !== description.trim()) {
-      item["card_description"] = description;
-      dispatch(updateCard(card));
-    }
+    triggerBeforeUpdateCard(item);
     handlerEditableCard(item);
   };
+
+  //! Check before update the Card
+  function triggerBeforeUpdateCard(item) {
+    let alert = {
+      type: "error",
+      messages: [],
+    };
+    if (!description || !description.trim()) {
+      alert.messages.push("- Некорректно заполнено описание карточки");
+    }
+    if (description.length > DESCRIPTION_LENGTH) {
+      alert.messages.push(
+        "- Слишком длинное описание карточки, опишите более ёмко"
+      );
+    }
+    if (alert.messages.length) {
+      dispatch(showAlert(alert));
+    } else if (
+      item["editable"] &&
+      item["card_description"] !== description.trim()
+    ) {
+      item["card_description"] = description.trim();
+      dispatch(updateCard(item));
+    }
+  }
+
   //! Delete card
   const deleteCardHandler = (item) => {
     console.log(item);
     dispatch(deleteCard(item));
+    console.log("1" + cardWasDeleted.current);
+    cardWasDeleted.current = true;
+    console.log("2" + cardWasDeleted.current);
   };
+  // useEffect(() => {
+  //   console.log("3" + cardWasDeleted.current);
+  //   if (cardWasDeleted.current) {
+  //     console.log("HERE");
 
+  //     sendUpdateCards(dbFunCards, funCards);
+  //     cardWasDeleted.current = false;
+  //   }
+  // });
+  useEffect(() => console.log(cardWasDeleted), [cardWasDeleted]);
   //! Reset description card (change not accepted)
   const resetDescription = (item) => {
     setDescription(item["card_description"]);
@@ -108,4 +159,4 @@ const CardButtons = ({ card, description, setDescription }) => {
     </>
   );
 };
-export default CardButtons;
+export default memo(CardButtons);

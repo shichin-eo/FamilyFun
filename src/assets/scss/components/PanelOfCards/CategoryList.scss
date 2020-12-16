@@ -1,0 +1,9 @@
+ul {
+  display: flex;
+  // border: 1px solid blue;
+  width: 95%;
+  height: auto;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 5px 0;
+}

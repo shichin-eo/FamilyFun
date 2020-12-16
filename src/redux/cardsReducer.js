@@ -20,11 +20,13 @@ export const cardsReducer = (state = initialState, action) => {
       if (action.payload["card_type"] === "family") {
         return {
           ...state,
+          fetchedCards: [...state.fetchedCards, action.payload], //!
           familyCards: [...state.familyCards, action.payload],
         };
       } else if (action.payload["card_type"] === "fun") {
         return {
           ...state,
+          fetchedCards: [...state.fetchedCards, action.payload], //!
           funCards: [...state.funCards, action.payload],
         };
       }

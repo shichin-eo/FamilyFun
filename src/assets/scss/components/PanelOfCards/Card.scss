@@ -3,19 +3,20 @@
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: center;
-  height: 14vh;
+  height: 130px;
   width: 70%;
-  position: absolute;
-  border-radius: 10px;
-  @include transition-ease;
-  &:hover {
-    transform: translateY(-2vh);
-  }
+  position: relative;
+  border-radius: 15px;
+  // &:hover {
+  //   transition: transform 1s ease-in-out;
+  //   transform: translateY(-2vh);
+  // }
   .card-input {
     width: 95%;
     height: 3.5vh;
     border-radius: 18px;
     font-weight: bold;
+    margin-top: 5px;
     padding-left: 1vh;
     font-size: 0.8vw;
   }

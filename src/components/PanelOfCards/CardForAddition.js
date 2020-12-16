@@ -6,15 +6,12 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { createCard, fetchPresets } from "../../redux/actions";
+import { createCard, fetchPresets, showAlert } from "../../redux/actions";
+import CategoryList from "./CategoryList";
 
 const CardforAddition = () => {
+  const DESCRIPTION_LENGTH = 30;
   const dispatch = useDispatch();
-  const [active, setActive] = useState("");
-  const creatingCard = useRef(false);
-
-  const [cardPriority, setCardPriority] = useState(1);
-  // const [priorities, setPriorities] = useState([]);
   const initialCard = {
     card_description: "",
     card_category: "Категория",
@@ -22,37 +19,59 @@ const CardforAddition = () => {
     card_type: "",
     card_priority: "",
   };
+  const [active, setActive] = useState("");
+  const [familyCardPriority, setfamilyCardPriority] = useState(1);
+  const [funCardPriority, setfunCardPriority] = useState(1);
   const [newCard, setNewCard] = useState(initialCard);
 
-  //**** List of categories ****//
-  const presets = useSelector((state) => state.app.presets);
-  //**** Get categories to choose from ****//
-  const setCategoryList = () => {
-    const category_preset = presets.filter(
-      (preset) => preset["preset_type"] === "p_category"
-    );
-    const list = category_preset.map((item) => item["preset_value"]);
-    const liCategoryList = list.map((category, index) => {
-      return (
-        <li
-          key={index}
-          onClick={() => {
-            updateCategory(category);
-          }}
-        >
-          {category}
-        </li>
-      );
-    });
-    return liCategoryList;
+  const creatingCard = useRef(false);
+
+  const familyCards = useSelector((state) => state.cards.familyCards);
+  const funCards = useSelector((state) => state.cards.funCards);
+
+  function setRelevantPriority(cardType) {
+    let relevantPriority;
+    switch (cardType) {
+      case "family":
+        if (familyCards.length) {
+          relevantPriority = Math.max.apply(
+            null,
+            familyCards.map((card) => card["card_priority"])
+          );
+          console.log(`relevantPriority123 ${relevantPriority}`);
+          setfamilyCardPriority(relevantPriority + 1);
+          break;
+        }
+      case "fun":
+        if (funCards.length) {
+          relevantPriority = Math.max.apply(
+            null,
+            funCards.map((card) => card["card_priority"])
+          );
+          console.log(`relevantPriority456 ${relevantPriority}`);
+          setfunCardPriority(relevantPriority + 1);
+          break;
+        }
+
+      default:
+        relevantPriority = 1;
+        break;
+    }
+    return relevantPriority;
+  }
+
+  useEffect(() => {
+    setRelevantPriority("family");
+  }, [familyCards]);
+
+  useEffect(() => {
+    setRelevantPriority("fun");
+  }, [funCards]);
+
+  //* function for toggle category list
+  const toggleActiveClass = () => {
+    !active ? setActive("active") : setActive("");
   };
-  //* List of categories for render *//
-  const categoryList = setCategoryList();
-
-  // const familyCards = useSelector((state) => state.cards.familyCards);
-  // const funCards = useSelector((state) => state.cards.funCards);
-
-  // console.log(`funCards.length ${funCards.length}`);
   //* UPDATE CARD CATEGORY function*//
   const updateCategory = (newCategory) => {
     setNewCard((prev) => ({ ...prev, card_category: newCategory }));
@@ -63,45 +82,73 @@ const CardforAddition = () => {
     const description = event.target.value;
     setNewCard((prev) => ({ ...prev, card_description: description }));
   };
-
+  //* RESET CARD function *//
+  const resetNewCard = () => {
+    setNewCard(initialCard);
+  };
   useEffect(() => {
     if (creatingCard.current) {
       creatingCard.current = false;
-      dispatch(createCard(newCard));
+      // if (canAddCard()) {
+      //   dispatch(createCard(newCard));
+      // } else {
+      //   dispatch(showAlert("Некорректно заполнены атрибуты карточки"));
+      // }
+      triggerBeforeCreateCard();
       resetNewCard();
-      incrementPriority();
     }
   }, [newCard]);
   useEffect(() => {
     dispatch(fetchPresets());
   }, []);
+  //* Проверка перед добавление карточки
+  // function canAddCard() {
+  //   let result = false;
+  //   if (
+  //     newCard["card_description"] &&
+  //     newCard["card_description"].trim() &&
+  //     newCard["card_category"] !== initialCard["card_category"]
+  //   ) {
+  //     result = true;
+  //   }
+  //   return result;
+  // }
+  function triggerBeforeCreateCard() {
+    let alert = {
+      type: "error",
+      messages: [],
+    };
+    if (!newCard["card_description"] || !newCard["card_description"].trim()) {
+      alert.messages.push("- Некорректно заполнено описание карточки");
+    }
+    if (newCard["card_category"] === initialCard["card_category"]) {
+      alert.messages.push("- Выберите категорию");
+    }
+    if (newCard["card_description"].length > DESCRIPTION_LENGTH) {
+      alert.messages.push(
+        "- Слишком длинное описание карточки, опишите более ёмко"
+      );
+    }
+    if (alert.messages.length) {
+      dispatch(showAlert(alert));
+    } else {
+      dispatch(createCard(newCard));
+    }
+  }
 
-  //* RESET CARD function *//
-  const resetNewCard = () => {
-    setNewCard(initialCard);
-  };
-  // * INCREMENT PRIORITY function*//
-  const incrementPriority = () => {
-    setCardPriority((prev) => {
-      console.log(prev);
-      return prev + 1;
-    });
-  };
   //* FILL CARD PROPS function and change REF for adding
   const createCardHandler = (userID, type) => {
+    let currentPriority =
+      type === "family" ? familyCardPriority : funCardPriority;
     setNewCard((prev) => {
       return {
         ...prev,
         card_user: userID,
         card_type: type,
-        card_priority: cardPriority,
+        card_priority: currentPriority,
       };
     });
     creatingCard.current = true;
-  };
-  //* function for toggle category list
-  const toggleActiveClass = () => {
-    !active ? setActive("active") : setActive("");
   };
 
   return (
@@ -122,7 +169,10 @@ const CardforAddition = () => {
             onChange={updateDescriptionCard}
           ></input>
           <div className={`cardForAddition_main_list ${active}`}>
-            <ul>{categoryList}</ul>
+            <CategoryList
+              updateCategory={updateCategory}
+              activeClass={active}
+            />
           </div>
           <div className="cardForAddition_main_category">
             {newCard["card_category"]}

@@ -65,20 +65,7 @@
 
       @include transition-ease;
       pointer-events: none;
-      ul {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        text-align: center;
-        li {
-          width: 100%;
-          cursor: pointer;
-        }
-        li:hover {
-          background-color: $card-color-family-dark;
-          color: $card-panel-bg;
-        }
-      }
+
       &::-webkit-scrollbar {
         width: 0.2vw;
       }
@@ -140,11 +127,11 @@
             transform: rotate(720deg);
             background: transparent;
             &::before {
-              transform: rotate(45deg) translate(25%, 40%);
+              transform: translate(10px) rotate(45deg) translate(25%, 40%);
             }
             &::after {
               width: 100%;
-              transform: rotate(-45deg) translate(25%, -40%);
+              transform: translate(10px) rotate(-45deg) translate(25%, -40%);
             }
           }
         }

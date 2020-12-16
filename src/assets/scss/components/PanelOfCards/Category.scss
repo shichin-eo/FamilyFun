@@ -1,0 +1,27 @@
+.category-li {
+  width: 5vh;
+  height: 5vh;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin: 5px;
+  img {
+    border-radius: 8px;
+  }
+  &.active {
+    animation: fade 1s ease-in-out;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(20%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

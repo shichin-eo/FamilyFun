@@ -106,6 +106,7 @@ module.exports = {
     //псевдоним для обращения к src без ../../../css
     alias: {
       "~": "src",
+      "@img": path.resolve(__dirname, "../src/assets/img"),
     },
   },
   plugins: [

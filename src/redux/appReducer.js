@@ -7,7 +7,10 @@ import {
 } from "./types";
 const initialState = {
   loading: false,
-  alert: null,
+  alert: {
+    messages: [],
+    type: "",
+  },
   presets: [],
 };
 
@@ -20,7 +23,7 @@ export const appReducer = (state = initialState, action) => {
     case SHOW_ALERT:
       return { ...state, alert: action.payload };
     case HIDE_ALERT:
-      return { ...state, alert: null };
+      return { ...state, alert: { messages: [], type: "" } };
     case FETCH_PRESETS:
       return { ...state, presets: action.payload };
     default:

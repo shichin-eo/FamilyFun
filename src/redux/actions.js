@@ -39,17 +39,21 @@ export function createCard(card) {
       const json = await response.json();
       const message = json.message;
       if (response.ok) {
-        const addedCard = json.body.card;
+        const additionalProps = {
+          editable: false,
+          // status: "fetched",
+        };
+        const addedCard = { ...json.body.card, ...additionalProps };
         console.log(addedCard);
         dispatch({ type: CREATE_CARD, payload: addedCard });
-        dispatch(showAlert(message));
+        dispatch(showAlert({ type: "success", messages: [message] }));
       } else {
         console.log(json);
-        dispatch(showAlert(message));
+        dispatch(showAlert({ type: "error", messages: [message] }));
       }
     } catch (e) {
       const errorMessage = "400 Bad Request";
-      dispatch(showAlert(errorMessage));
+      dispatch(showAlert({ type: "error", messages: [errorMessage] }));
       throw new Error(errorMessage);
     }
   };
@@ -73,15 +77,14 @@ export function updateCard(card) {
       const json = await response.json();
       const message = json.message;
       if (response.ok) {
-        console.log(`json changeCard ${json}`);
         dispatch({ type: UPDATE_CARD, payload: card });
-        dispatch(showAlert(message));
+        dispatch(showAlert({ type: "success", messages: [message] }));
       } else {
-        dispatch(showAlert(message));
+        dispatch(showAlert({ type: "error", messages: [message] }));
       }
     } catch (e) {
       const errorMessage = "400 Bad Request";
-      dispatch(showAlert(errorMessage));
+      dispatch(showAlert({ type: "error", messages: [errorMessage] }));
       throw new Error(errorMessage);
     }
   };
@@ -105,10 +108,10 @@ export function deleteCard(card) {
       if (response.ok) {
         console.log(`Message from DELETE method ${message}`);
         dispatch({ type: DELETE_CARD, payload: card });
-        dispatch(showAlert(message));
+        dispatch(showAlert({ type: "success", messages: [message] }));
       } else {
         console.log(message);
-        dispatch(showAlert(message));
+        dispatch(showAlert({ type: "error", messages: [message] }));
       }
     } catch (e) {
       throw new Error("Не удалось удалить карточку");
@@ -125,7 +128,7 @@ export function fetchCards(userID) {
     const json = await response.json();
     const additionalProps = {
       editable: false,
-      updated: false,
+      // status: "fetched",
     };
     const data = json.map((elem) => {
       return { ...elem, ...additionalProps };
@@ -177,11 +180,11 @@ export function disableEditCard(card) {
   };
 }
 
-export function showAlert(text) {
+export function showAlert(alert) {
   return (dispatch) => {
     dispatch({
       type: SHOW_ALERT,
-      payload: text,
+      payload: alert,
     });
     setTimeout(() => dispatch(hideAlert()), 3000);
   };

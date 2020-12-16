@@ -14,12 +14,18 @@
   transition: all 2s ease;
   animation: showAlert 3s ease-in-out;
   padding: 10px 10px;
-
+  &_message {
+    width: 90%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
   &_success {
     background-color: #cbd3ce;
     border: 3px solid #18843e;
     color: #18843e;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   &_error {
     background-color: #e99c94;

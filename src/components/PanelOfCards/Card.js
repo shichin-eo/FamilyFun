@@ -13,7 +13,6 @@ const Card = ({ card, id, index, locked, sendUpdateCards }) => {
       setDescription(item["card_description"]);
     }
   };
-  useEffect(() => setCurrentDesc(card), [card]);
 
   const getItemStyle = (isDragging, draggableStyle) => {
     let color;
@@ -27,8 +26,9 @@ const Card = ({ card, id, index, locked, sendUpdateCards }) => {
   };
 
   const isDragDisabled = locked || String(card["id"]).includes("empty");
-
   const draggableID = `${card["id"]}`;
+
+  useEffect(() => setCurrentDesc(card), [card]);
   return (
     <Draggable
       draggableId={draggableID}

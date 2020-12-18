@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState } from "react";
 import Card from "./Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
@@ -100,7 +100,7 @@ const CardPanel = ({ type }) => {
   };
   //*** function compare db cards and relevant cards */
   const setUpdatedCards = (oldArr, newArr) => {
-    //   newArr.length = oldArr.length;
+    newArr.length = oldArr.length;
     console.log(`oldArr`);
     console.log(oldArr);
     console.log(`newArr`);

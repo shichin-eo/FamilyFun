@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisV,
@@ -24,7 +24,12 @@ const CardButtons = ({
   const type = card["card_type"];
   const DESCRIPTION_LENGTH = 30;
   const dispatch = useDispatch();
-  const cardWasDeleted = useRef(false);
+  //?????????????????????
+  const [deletedCard, setDeletedCard] = useState(null);
+  const updateDeletedCard = (item) => {
+    setDeletedCard(item);
+  };
+  //?????????????????????
   const familyCards = useSelector((state) => state.cards.familyCards);
   const funCards = useSelector((state) => state.cards.funCards);
   const fetchedCards = useSelector((state) => state.cards.fetchedCards);
@@ -79,21 +84,34 @@ const CardButtons = ({
   //! Delete card
   const deleteCardHandler = (item) => {
     console.log(item);
+    updateDeletedCard(item);
     dispatch(deleteCard(item));
-    console.log("1" + cardWasDeleted.current);
-    cardWasDeleted.current = true;
-    console.log("2" + cardWasDeleted.current);
   };
-  // useEffect(() => {
-  //   console.log("3" + cardWasDeleted.current);
-  //   if (cardWasDeleted.current) {
-  //     console.log("HERE");
+  useEffect(() => {
+    triggerAfterDelete();
+  }, [deletedCard]);
+  //! Update cards after delete
+  function triggerAfterDelete() {
+    if (deletedCard) {
+      let currentFunCards;
+      if (deletedCard["card_type"] === "family") {
+        currentFunCards = familyCards
+          .filter((fameilyCard) => fameilyCard["id"] !== deletedCard["id"])
+          .map((fameilyCard, index) => ({
+            ...fameilyCard,
+            card_priority: index + 1,
+          }));
+        sendUpdateCards(dbFamilyCards, currentFunCards);
+      } else if (deletedCard["card_type"] === "fun") {
+        currentFunCards = funCards
+          .filter((funCard) => funCard["id"] !== deletedCard["id"])
+          .map((funCard, index) => ({ ...funCard, card_priority: index + 1 }));
+        sendUpdateCards(dbFunCards, currentFunCards);
+      }
 
-  //     sendUpdateCards(dbFunCards, funCards);
-  //     cardWasDeleted.current = false;
-  //   }
-  // });
-  useEffect(() => console.log(cardWasDeleted), [cardWasDeleted]);
+      setDeletedCard(null);
+    }
+  }
   //! Reset description card (change not accepted)
   const resetDescription = (item) => {
     setDescription(item["card_description"]);

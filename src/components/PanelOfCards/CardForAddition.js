@@ -11,6 +11,7 @@ import CategoryList from "./CategoryList";
 
 const CardforAddition = () => {
   const DESCRIPTION_LENGTH = 30;
+
   const dispatch = useDispatch();
   const initialCard = {
     card_description: "",
@@ -20,8 +21,10 @@ const CardforAddition = () => {
     card_priority: "",
   };
   const [active, setActive] = useState("");
+
   const [familyCardPriority, setfamilyCardPriority] = useState(1);
   const [funCardPriority, setfunCardPriority] = useState(1);
+
   const [newCard, setNewCard] = useState(initialCard);
 
   const creatingCard = useRef(false);
@@ -30,43 +33,35 @@ const CardforAddition = () => {
   const funCards = useSelector((state) => state.cards.funCards);
 
   function setRelevantPriority(cardType) {
-    let relevantPriority;
+    let relevantPriority = 1;
     switch (cardType) {
       case "family":
         if (familyCards.length) {
-          relevantPriority = Math.max.apply(
-            null,
-            familyCards.map((card) => card["card_priority"])
-          );
+          relevantPriority = getMaxPriority(familyCards);
           console.log(`relevantPriority123 ${relevantPriority}`);
           setfamilyCardPriority(relevantPriority + 1);
           break;
         }
       case "fun":
         if (funCards.length) {
-          relevantPriority = Math.max.apply(
-            null,
-            funCards.map((card) => card["card_priority"])
-          );
+          relevantPriority = getMaxPriority(funCards);
           console.log(`relevantPriority456 ${relevantPriority}`);
           setfunCardPriority(relevantPriority + 1);
           break;
         }
-
       default:
         relevantPriority = 1;
         break;
     }
-    return relevantPriority;
   }
 
-  useEffect(() => {
-    setRelevantPriority("family");
-  }, [familyCards]);
-
-  useEffect(() => {
-    setRelevantPriority("fun");
-  }, [funCards]);
+  function getMaxPriority(arr) {
+    const maxPriority = Math.max.apply(
+      null,
+      arr.map((card) => card["card_priority"])
+    );
+    return maxPriority;
+  }
 
   //* function for toggle category list
   const toggleActiveClass = () => {
@@ -86,33 +81,7 @@ const CardforAddition = () => {
   const resetNewCard = () => {
     setNewCard(initialCard);
   };
-  useEffect(() => {
-    if (creatingCard.current) {
-      creatingCard.current = false;
-      // if (canAddCard()) {
-      //   dispatch(createCard(newCard));
-      // } else {
-      //   dispatch(showAlert("Некорректно заполнены атрибуты карточки"));
-      // }
-      triggerBeforeCreateCard();
-      resetNewCard();
-    }
-  }, [newCard]);
-  useEffect(() => {
-    dispatch(fetchPresets());
-  }, []);
   //* Проверка перед добавление карточки
-  // function canAddCard() {
-  //   let result = false;
-  //   if (
-  //     newCard["card_description"] &&
-  //     newCard["card_description"].trim() &&
-  //     newCard["card_category"] !== initialCard["card_category"]
-  //   ) {
-  //     result = true;
-  //   }
-  //   return result;
-  // }
   function triggerBeforeCreateCard() {
     let alert = {
       type: "error",
@@ -150,6 +119,27 @@ const CardforAddition = () => {
     });
     creatingCard.current = true;
   };
+  //*** USEEFFECTS */
+  //? Загрузка пресетов для категорий
+  useEffect(() => {
+    dispatch(fetchPresets());
+  }, []);
+  //? FormatControl before add Card => add card
+  useEffect(() => {
+    if (creatingCard.current) {
+      creatingCard.current = false;
+      triggerBeforeCreateCard();
+      resetNewCard();
+    }
+  }, [newCard]);
+  //? Установка приоритета карточки для типа "family"
+  useEffect(() => {
+    setRelevantPriority("family");
+  }, [familyCards]);
+  //? Установка приоритета карточки для типа "fun"
+  useEffect(() => {
+    setRelevantPriority("fun");
+  }, [funCards]);
 
   return (
     <>

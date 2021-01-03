@@ -1,0 +1,27 @@
+.notificationBar {
+  width: 2%;
+  height: 70%;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  &_item {
+    width: 2vh;
+    height: 2vh;
+    background-color: $pushNotificationBackground;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    opacity: 0.2;
+    transition: opacity 0.8s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.active {
+  opacity: 1;
+}

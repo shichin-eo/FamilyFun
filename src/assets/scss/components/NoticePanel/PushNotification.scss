@@ -1,33 +1,61 @@
 .pushNotification {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 80%;
-  width: 50%;
-  font-family: $mainFont;
-}
-
-.pushNotification-footer {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  height: 5vh;
-  width: 100%;
-  // border: 2px solid blue;
-  background-color: white;
-}
-
-.pushNotification-recipient,
-.pushNotification-timer {
+  border: 1px solid red;
+  width: 65%;
+  height: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  // border: dashed 1px purple;
-  height: 100%;
-  width: 35%;
+  &_main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
+    width: 75%;
+    font-family: $mainFont;
+    border: 1px solid purple;
+    &_footer {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      height: 5vh;
+      width: 100%;
+      // border: 2px solid blue;
+      background-color: white;
+      &_recipient {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        border: dashed 1px purple;
+        height: 100%;
+        width: 25%;
+        &_counter {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-around;
+          align-items: center;
+          height: 70%;
+          width: 30%;
+
+          &_amount {
+            color: #f66f6c;
+          }
+        }
+      }
+      &_timer {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        border: dashed 1px purple;
+        height: 100%;
+        width: 40%;
+      }
+    }
+  }
 }
 
 .pushNotification-timer-container {
@@ -39,48 +67,39 @@
   width: 40%;
 }
 
-.pushNotification-recipient-counter {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
-  height: 70%;
-  width: 40%;
-  // border: black 3px dashed;
-  margin-left: 10px;
-}
+// // !!!! ПРОШЛАЯ ВЕРСИЯ С ДВУМЯ КНОПКАМИ
 // .pushNotification-timer-hour {
-//   width: 100%;
+//   width: 50%;
 //   text-align: center;
-//   border: 3px solid #f66f6c;
-//   padding: 2px 0;
-//   border-radius: 10px;
+//   border-right: 1px solid #f66f6c;
+//   border-left: 2px solid #f66f6c;
+//   border-top: 2px solid #f66f6c;
+//   border-bottom: 2px solid #f66f6c;
+//   border-radius: 10px 0 0 10px;
 // }
-.pushNotification-timer {
-  margin-left: 15%;
-}
-// !!!! ПРОШЛАЯ ВЕРСИЯ С ДВУМЯ КНОПКАМИ
-.pushNotification-timer-hour {
-  width: 50%;
-  text-align: center;
-  border-right: 1px solid #f66f6c;
-  border-left: 2px solid #f66f6c;
-  border-top: 2px solid #f66f6c;
-  border-bottom: 2px solid #f66f6c;
-  border-radius: 10px 0 0 10px;
-}
-.pushNotification-timer-minute {
-  width: 50%;
-  text-align: center;
-  border-left: 1px solid #f66f6c;
-  border-right: 2px solid #f66f6c;
-  border-top: 2px solid #f66f6c;
-  border-bottom: 2px solid #f66f6c;
-  border-radius: 0 10px 10px 0;
-}
+// .pushNotification-timer-minute {
+//   width: 50%;
+//   text-align: center;
+//   border-left: 1px solid #f66f6c;
+//   border-right: 2px solid #f66f6c;
+//   border-top: 2px solid #f66f6c;
+//   border-bottom: 2px solid #f66f6c;
+//   border-radius: 0 10px 10px 0;
+// }
 
 .pushNotification-recipient-amount,
 .pushNotification-timer-hour,
 .pushNotification-timer-minute {
   color: #f66f6c;
+}
+.datetimepicker {
+  border: 1px solid #f66f6c;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+#date-time-picker {
+  display: flex;
+  color: #f66f6c;
+  width: 130px;
 }

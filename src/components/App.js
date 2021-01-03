@@ -11,8 +11,8 @@ class App extends Component {
       <div className="App">
         <Header />
         {/* <InfoGraph /> */}
-        <PanelOfCards />
-        {/* <NoticePanel /> */}
+        {/* <PanelOfCards /> */}
+        <NoticePanel />
         {/* <Authorization /> */}
       </div>
     );

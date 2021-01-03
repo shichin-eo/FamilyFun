@@ -3,40 +3,28 @@ import Card from "./Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setFamilyCards, setFunCards, updateCard } from "../../redux/actions";
 
-const CardPanel = ({ type }) => {
+const CardPanel = ({ props }) => {
+  const { type, cards, dbCards, img } = props;
   const [locked, setLocked] = useState(true);
-
   const dispatch = useDispatch();
-  const familyCards = useSelector((state) => state.cards.familyCards);
-  const funCards = useSelector((state) => state.cards.funCards);
-
-  const fetchedCards = useSelector((state) => state.cards.fetchedCards);
-  const dbFamilyCards = fetchedCards.filter(
-    (card) => card["card_type"] === "family"
-  );
-  const dbFunCards = fetchedCards.filter((card) => card["card_type"] === "fun");
-
   const emptyCard = {
     card_category: "Категория",
     card_description: "Описание",
     id: null,
   };
+
   //*** function for unlock cardPanel */
   function lockHandler() {
     setLocked(!locked);
     if (!locked) {
-      if (type === "family") {
-        sendUpdateCards(dbFamilyCards, familyCards);
-      } else if (type === "fun") {
-        sendUpdateCards(dbFunCards, funCards);
-      }
+      sendUpdateCards(dbCards, cards);
     }
   }
   //*** function for fill the list of cards */
-  function fillListCards(cards) {
+  function fillListCards(listCards) {
     let nocards = [
       emptyCard,
       emptyCard,
@@ -46,30 +34,14 @@ const CardPanel = ({ type }) => {
       emptyCard,
     ];
     nocards = nocards.map((card, index) => ({ ...card, id: `empty${index}` }));
-    let currentCards = [...cards];
+    let currentCards = [...listCards];
     const result = [...currentCards, ...nocards];
     result.length = 6;
     return result;
   }
-  //*** function for fill cardPanel */
-  const fillCardPanel = (panelType) => {
-    switch (panelType) {
-      case "family":
-        return {
-          img: "../assets/img/family.png",
-          cards: fillListCards(familyCards),
-        };
-      case "fun":
-        return {
-          img: "../assets/img/fun.png",
-          cards: fillListCards(funCards),
-        };
-      default:
-        return { img: "../assets/img/404.jpg", cards: [] };
-    }
-  };
-  //* Current panel of cards
-  const panel = fillCardPanel(type);
+  //*****! Current panel of cards
+  const panel = fillListCards(cards);
+  //*****!
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
@@ -81,26 +53,34 @@ const CardPanel = ({ type }) => {
     ) {
       return;
     }
-    let newPanel = Array.from(panel.cards);
+    let newPanel = Array.from(panel);
+    console.log(`newPanel length ${newPanel.length}`);
     const selectedCard = newPanel.find(
       (dragCard) => dragCard["id"] === Number(draggableId)
     );
+    console.log(`selectedCard ${selectedCard.id}`);
+    console.log(`draggableId ${draggableId}`);
     newPanel.splice(source.index, 1);
     newPanel.splice(destination.index, 0, selectedCard);
+    console.log(`AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`);
     console.log(newPanel);
-    newPanel = newPanel.map((item, index) => {
-      console.log(item);
-      return {
-        ...item,
-        card_priority: index + 1,
-      };
-    });
+    newPanel = newPanel
+      .filter((item) => Number(item["id"]))
+      .map((item, index) => {
+        console.log(item["id"]);
+        console.log(Number(item["id"]));
+        return {
+          ...item,
+          card_priority: index + 1,
+        };
+      });
     if (type === "family") dispatch(setFamilyCards(newPanel));
     else if (type === "fun") dispatch(setFunCards(newPanel));
   };
+
   //*** function compare db cards and relevant cards */
   const setUpdatedCards = (oldArr, newArr) => {
-    newArr.length = oldArr.length;
+    //  newArr.length = oldArr.length;      //!Если раскомментировать строку, то при удалении добавляет пустой элемент, карточек в newArr становится больше, т.к. oldArr.length > newArr.length
     console.log(`oldArr`);
     console.log(oldArr);
     console.log(`newArr`);
@@ -110,19 +90,7 @@ const CardPanel = ({ type }) => {
     });
     return updatedCards;
   };
-  // const sendUpdateCards = () => {
-  //   if (type === "family") {
-  //     const cardsToSend = setUpdatedCards(dbFamilyCards, familyCards);
-  //     cardsToSend.forEach((card) => dispatch(updateCard(card)));
-  //     console.log(`cardsToSend`);
-  //     console.log(cardsToSend);
-  //   } else if (type === "fun") {
-  //     const cardsToSend = setUpdatedCards(dbFunCards, funCards);
-  //     cardsToSend.forEach((card) => dispatch(updateCard(card)));
-  //     console.log(`cardsToSend`);
-  //     console.log(cardsToSend);
-  //   }
-  // };
+
   const sendUpdateCards = (dbCards, relevantCards) => {
     const cardsToSend = setUpdatedCards(dbCards, relevantCards);
     cardsToSend.forEach((card) => dispatch(updateCard(card)));
@@ -138,11 +106,17 @@ const CardPanel = ({ type }) => {
       background: color,
     };
   };
+  const cardProps = {
+    cards,
+    dbCards,
+    locked,
+    sendUpdateCards,
+  };
 
   return (
     <div className="cardPanel-container">
       <div className={`cardPanel_img_${type}`}>
-        <img src={panel.img} alt="CardPanel Image"></img>
+        <img src={img} alt="CardPanel Image"></img>
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={type}>
@@ -157,15 +131,14 @@ const CardPanel = ({ type }) => {
                   provided.droppableProps.style
                 )}
               >
-                {panel.cards.map((card, index) => {
+                {panel.map((card, index) => {
                   return (
                     <Card
                       card={card}
                       id={`${type}Card${index}`}
                       key={`${card["id"]}`}
                       index={index}
-                      locked={locked}
-                      sendUpdateCards={sendUpdateCards}
+                      cardProps={cardProps}
                     />
                   );
                 })}

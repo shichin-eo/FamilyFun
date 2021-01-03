@@ -1,161 +1,137 @@
 //! Основной элемент (получает props.type - для background) содержит  notification-component и notification-control-btns
-.notification-container {
+.notification {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
   height: 80%;
-}
+  &.push {
+    border-radius: 12px;
+    background-color: $pushNotificationBackground;
+  }
+  &.event {
+    background-color: $eventNotificationBackground;
+    border-radius: 12px;
+  }
+  &_component {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    color: $notificationFontColor;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    padding-left: 1vw;
+    &_header {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      // border: royalblue 3px dashed;
+      width: 100%;
+      height: 40%;
+      &_title {
+        display: flex;
+        flex-flow: column nowrap;
+        width: auto;
+        // border: solid 3px goldenrod;
+        & h1 {
+          font-size: 2.5vh;
+          font-weight: bold;
+        }
+        & input {
+          font-size: 1.8vh;
+          margin-top: 1%;
+          color: $notificationFontColor;
+        }
+        &.push > input {
+          background-color: $pushNotificationBackground;
+        }
+        &.event > input {
+          background-color: $eventNotificationBackground;
+        }
+      }
+      & > img {
+        margin-left: 2vh;
+      }
+    }
+    &_body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 60%;
+      // flex: 1;
+      // border: 2px solid purple;
+      margin-bottom: 1.5vh;
+      &.push > textarea {
+        background-color: $pushNotificationTextBackground;
+        border-radius: 12px;
+      }
+      // &.event,
+      &.event > textarea {
+        background-color: $eventNotificationTextBackground;
+        border-radius: 12px;
+      }
 
-//! ОПОВЕЩЕНИЕ  содержит: notification-header и notification-body
-.notification-component {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  color: $notificationFontColor;
-  height: 100%;
-  width: 100%;
-  border-radius: 15px;
-  padding-left: 1vw;
-}
+      & > textarea {
+        height: 100%;
+        width: 100%;
+        // border: royalblue 1px dashed;
+        padding: 1vh 2vh;
+        color: $notificationFontColor;
+        font-family: $mainFont;
+        overflow-y: hidden;
+        font-size: $notificationBodyFontSize;
+        border-radius: 12px;
+        &::-webkit-scrollbar {
+          width: 2px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: $notificationScrollColor;
+        }
 
-//* Header Оповещения содержит : notification-title , img
-.notification-header {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  // border: royalblue 3px dashed;
-  width: 100%;
-  // flex: 1;
-  height: 40%;
-}
-
-.notification-header > img {
-  margin-left: 2vh;
-}
-
-//* Body Оповещения содержит : notification-text
-.notification-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 60%;
-  // flex: 1;
-  // border: 2px solid purple;
-  margin-bottom: 1.5vh;
-}
-
-//? Заголовок оповещения содержит <h1> и <p>
-.notification-title {
-  display: flex;
-  flex-flow: column nowrap;
-  width: auto;
-  // border: solid 3px goldenrod;
-}
-
-.notification-title h1 {
-  font-size: 2.5vh;
-  font-weight: bold;
-}
-
-.notification-title input {
-  font-size: 1.8vh;
-
-  color: $notificationFontColor;
-}
-
-//? Текст оповещения содержит  (получает props.type - для background)
-.notification-body > textarea {
-  height: 100%;
-  width: 100%;
-  // border: royalblue 1px dashed;
-  padding: 1vh 2vh;
-  color: $notificationFontColor;
-  font-family: $mainFont;
-  overflow-y: hidden;
-  font-size: $notificationBodyFontSize;
-}
-
-.notification-body > textarea::-webkit-scrollbar {
-  width: 2px;
-}
-
-/* Thumb */
-.notification-body > textarea::-webkit-scrollbar-thumb {
-  background: $notificationScrollColor;
-}
-
-.notification-body > textarea:hover {
-  overflow-y: auto;
-}
-// * Buttons
-.notification-control-btns {
-  width: 7%;
-  height: 100%;
-  border: 1px solid black;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 0 1px;
-}
-
-.notify-edit,
-.notify-accept,
-.notify-remove {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  cursor: pointer;
-}
-.notify-edit svg,
-.notify-accept svg,
-.notify-remove svg {
-  width: 80%;
-  height: auto;
-}
-
-.notify-edit {
-  top: 1vh;
-}
-.notify-accept {
-  opacity: 0;
-  bottom: 1vh;
-  pointer-events: none;
-}
-.notify-remove {
-  opacity: 0;
-  top: 1vh;
-  pointer-events: none;
-}
-
-//! В зависимости от типа в props.type устанавливается background-color
-.push,
-.notification-title.push > input {
-  background-color: $pushNotificationBackground;
-  border-radius: 12px;
-}
-
-.notification-body.push,
-.notification-body.push > textarea {
-  background-color: $pushNotificationTextBackground;
-  border-radius: 12px;
-}
-
-.event,
-.notification-title.event > input {
-  background-color: $eventNotificationBackground;
-  border-radius: 12px;
-}
-
-.notification-body.event,
-.notification-body.event > textarea {
-  background-color: $eventNotificationTextBackground;
-  border-radius: 12px;
+        &:hover {
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+  &_btns {
+    width: 7%;
+    height: 100%;
+    // border: 1px solid black;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 1px;
+    &_edit,
+    &_accept,
+    &_cancel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    &_edit {
+      top: 1vh;
+    }
+    &_accept {
+      opacity: 1;
+      bottom: 1vh;
+      pointer-events: none;
+    }
+    &_cancel {
+      opacity: 0;
+      top: 1vh;
+      pointer-events: none;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisV,
@@ -6,7 +6,7 @@ import {
   faEdit,
   faSave,
 } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   deleteCard,
   enableEditCard,
@@ -15,12 +15,15 @@ import {
   showAlert,
 } from "../../redux/actions";
 
-const CardButtons = ({
-  card,
-  description,
-  setDescription,
-  sendUpdateCards,
-}) => {
+const CardButtons = ({ cardButtonsProps }) => {
+  const {
+    card,
+    description,
+    setDescription,
+    sendUpdateCards,
+    cards,
+    dbCards,
+  } = cardButtonsProps;
   const type = card["card_type"];
   const DESCRIPTION_LENGTH = 30;
   const dispatch = useDispatch();
@@ -30,13 +33,6 @@ const CardButtons = ({
     setDeletedCard(item);
   };
   //?????????????????????
-  const familyCards = useSelector((state) => state.cards.familyCards);
-  const funCards = useSelector((state) => state.cards.funCards);
-  const fetchedCards = useSelector((state) => state.cards.fetchedCards);
-  const dbFamilyCards = fetchedCards.filter(
-    (card) => card["card_type"] === "family"
-  );
-  const dbFunCards = fetchedCards.filter((card) => card["card_type"] === "fun");
 
   //! The card can be edited
   const handlerEditableCard = (item) => {
@@ -93,22 +89,13 @@ const CardButtons = ({
   //! Update cards after delete
   function triggerAfterDelete() {
     if (deletedCard) {
-      let currentFunCards;
-      if (deletedCard["card_type"] === "family") {
-        currentFunCards = familyCards
-          .filter((fameilyCard) => fameilyCard["id"] !== deletedCard["id"])
-          .map((fameilyCard, index) => ({
-            ...fameilyCard,
-            card_priority: index + 1,
-          }));
-        sendUpdateCards(dbFamilyCards, currentFunCards);
-      } else if (deletedCard["card_type"] === "fun") {
-        currentFunCards = funCards
-          .filter((funCard) => funCard["id"] !== deletedCard["id"])
-          .map((funCard, index) => ({ ...funCard, card_priority: index + 1 }));
-        sendUpdateCards(dbFunCards, currentFunCards);
-      }
-
+      const currentCards = cards
+        .filter((card) => card["id"] !== deletedCard["id"])
+        .map((card, index) => ({
+          ...card,
+          card_priority: index + 1,
+        }));
+      sendUpdateCards(dbCards, currentCards);
       setDeletedCard(null);
     }
   }
@@ -118,11 +105,17 @@ const CardButtons = ({
   };
 
   //! Add class to buttons
-  const toggleClass = (event) => {
-    let elem = event.target.nextSibling;
-    if (!elem) {
-      elem = event.target.parentNode.nextSibling;
+  const toggleClass = (event, afterSave) => {
+    let elem;
+    if (afterSave) {
+      elem = event.target.closest(".show");
+    } else {
+      elem = event.target.nextSibling;
+      if (!elem) {
+        elem = event.target.parentNode.nextSibling;
+      }
     }
+    console.log(elem);
     elem.classList.toggle("show");
   };
   //! Toggle buttons
@@ -139,7 +132,8 @@ const CardButtons = ({
           <FontAwesomeIcon
             className="card-btns_save"
             icon={faSave}
-            onClick={() => {
+            onClick={(e) => {
+              toggleClass(e, true);
               updateCardHandler(item);
             }}
           />
@@ -156,7 +150,7 @@ const CardButtons = ({
             className={`card-options ${type}`}
             icon={faEllipsisV}
             onClick={(e) => {
-              toggleClass(e);
+              toggleClass(e, false);
               if (card["editable"]) handlerEditableCard(card);
             }}
           />

@@ -13,6 +13,7 @@ import {
   SHOW_ALERT,
   HIDE_ALERT,
   FETCH_PRESETS,
+  FETCH_SENDER_NOTIFICATIONS,
 } from "./types";
 
 export function changeLanguage(lang) {
@@ -72,7 +73,6 @@ export function updateCard(card) {
         },
         body: JSON.stringify(card),
       };
-      console.log("HERERE");
       const response = await fetch(url, options);
       const json = await response.json();
       const message = json.message;
@@ -204,3 +204,15 @@ export function fetchPresets() {
     dispatch({ type: FETCH_PRESETS, payload: json });
   };
 }
+
+//! NOTICE PANEL (панель уведомлений)
+export function fetchSenderNotifications(senderID) {
+  return async (dispatch) => {
+    const url = `http://localhost:3000/api/v1/notifications/sender/${senderID}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    dispatch({ type: FETCH_SENDER_NOTIFICATIONS, payload: data });
+  };
+}
+
+//! NOTICE PANEL END (панель уведомлений)

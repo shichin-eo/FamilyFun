@@ -5,11 +5,11 @@ import {
   faHandPointRight,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createCard, fetchPresets, showAlert } from "../../redux/actions";
 import CategoryList from "./CategoryList";
 
-const CardforAddition = () => {
+const CardforAddition = ({ familyCards, funCards }) => {
   const DESCRIPTION_LENGTH = 30;
 
   const dispatch = useDispatch();
@@ -28,9 +28,6 @@ const CardforAddition = () => {
   const [newCard, setNewCard] = useState(initialCard);
 
   const creatingCard = useRef(false);
-
-  const familyCards = useSelector((state) => state.cards.familyCards);
-  const funCards = useSelector((state) => state.cards.funCards);
 
   function setRelevantPriority(cardType) {
     let relevantPriority = 1;
@@ -56,6 +53,7 @@ const CardforAddition = () => {
   }
 
   function getMaxPriority(arr) {
+    console.log(`ARRAAAAY ${arr}`);
     const maxPriority = Math.max.apply(
       null,
       arr.map((card) => card["card_priority"])

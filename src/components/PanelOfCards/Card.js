@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import CardButtons from "./CardButtons";
 
-const Card = ({ card, id, index, locked, sendUpdateCards }) => {
+// const Card = ({ card, id, index, locked, sendUpdateCards }) => {
+const Card = ({ card, id, index, cardProps }) => {
+  const { locked } = cardProps;
   const [description, setDescription] = useState(card["card_description"]);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
 
@@ -29,6 +31,13 @@ const Card = ({ card, id, index, locked, sendUpdateCards }) => {
   const draggableID = `${card["id"]}`;
 
   useEffect(() => setCurrentDesc(card), [card]);
+  //* Props for CardButtons
+  const cardButtonsProps = {
+    ...cardProps,
+    card,
+    description,
+    setDescription,
+  };
   return (
     <Draggable
       draggableId={draggableID}
@@ -48,12 +57,7 @@ const Card = ({ card, id, index, locked, sendUpdateCards }) => {
               provided.draggableProps.style
             )}
           >
-            <CardButtons
-              card={card}
-              description={description}
-              setDescription={setDescription}
-              sendUpdateCards={sendUpdateCards}
-            />
+            <CardButtons cardButtonsProps={cardButtonsProps} />
             <input
               className="card-input"
               placeholder="Описание"
